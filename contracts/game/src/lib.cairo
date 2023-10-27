@@ -191,7 +191,7 @@ mod Game {
             if(config_id==9){
                 let cost =  AdventurerRes{ egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 20, iron: 20, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
                 let reward =  AdventurerRes{ egg: 0, meat: 0,fish:0, soft_skin: 0, crusty: 0, berry: 0, bamboo: 0, balsa_wood: 0, fir_wood: 0, teak: 0, hemlock: 0, mahogany: 0, pine: 0, coal: 0, copper: 0, iron: 0, silver: 0, sterling_silver: 0, graphite: 0, platinum: 0, roast_meat: 0, last_timestamp: 0 };
-                _composite( ref self,adventurer_id,cost,reward,2,times);
+                _composite( ref self,adventurer_id,cost,reward,4,times);
             }
         }
 
