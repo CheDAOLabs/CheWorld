@@ -713,8 +713,8 @@ export async function parseEvents(receipt) {
             case "ResUpdate":
                 console.log("ResUpdate", raw.data);
                 const ResUpdateData = {
-                    adventurer_res: parseAdventurerRes(raw.data.slice(0, 21)),
-                    changed: parseAdventurerRes(raw.data.slice(22, 43)),
+                    adventurer_res: parseAdventurerRes(raw.data.slice(0, 22)),
+                    changed: parseAdventurerRes(raw.data.slice(22, 44)),
                 };
                 events.push({
                     name: eventName, data: {
@@ -731,9 +731,9 @@ export async function parseEvents(receipt) {
                         adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
                         bag: parseBag(raw.data.slice(40, 73)),
                     },
-                    cost: parseAdventurerRes(raw.data.slice(74, 95)),
-                    res: parseAdventurerRes(raw.data.slice(96, 117)),
-                    reward: parseAdventurerRes(raw.data.slice(118, 139)),
+                    cost: parseAdventurerRes(raw.data.slice(74, 96)),
+                    res: parseAdventurerRes(raw.data.slice(96, 118)),
+                    reward: parseAdventurerRes(raw.data.slice(118, 140)),
                     times: parseInt(raw.data[140]),
                 };
                 events.push({

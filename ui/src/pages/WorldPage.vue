@@ -192,7 +192,6 @@ export default {
       if (id === undefined) {
         return 0
       }
-      // console.log("getCanHarvestNum", id);
       const current_timestamp = Math.floor(Date.now() / 1000);
       const last_timestamp = this.adventurer.resources.last_timestamp;
       const count = (current_timestamp - last_timestamp) / 600;
@@ -201,13 +200,13 @@ export default {
       if (num >= config.maxnum) {
         num = config.maxnum;
       }
+      // console.log("getCanHarvestNum",config, id,num,current_timestamp,last_timestamp);
       return (Number)(num);
     },
     getTypeCount(type) {
       let configs = getResConfigByType(type);
 
       let all = 0;
-      // this.can
       for (let i = 0; i < configs.length; i++) {
         let config = configs[i];
         all += this.getCanHarvestNum(config.id);
