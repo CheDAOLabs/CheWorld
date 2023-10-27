@@ -66,7 +66,7 @@
                           <b>Item: </b>{{ pair.name }}
                         </p>
                         <p>
-                          <b>Type:</b>wild berries
+                          <b>Type: </b>{{ pair.type }}
                         </p>
                         <p>
                           <b>Quantity: </b>{{ pair.value }}
@@ -119,7 +119,7 @@ import {mapActions, mapMutations, mapState} from "vuex";
 import {ElMessage} from "element-plus";
 import {composite_config, item_subtypes} from "@/config/item.js";
 import {ITEM_SLOTS, ITEM_TIERS, ITEMS} from "@/system/GameData.js";
-import {getResConfigById, getResConfigByKey} from "@/config/res_conf.js";
+import {getResConfigById, getResConfigByKey, ResType} from "@/config/res_conf.js";
 
 export default {
   name: 'CraftingComponent',
@@ -229,6 +229,7 @@ export default {
             value: parseInt(value),
             name: res_config.name,
             desc: res_config.inform,
+            type: ResType[res_config.type]
           };
         });
         console.log(pairs);
