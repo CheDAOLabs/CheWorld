@@ -60,7 +60,7 @@
                   <div class="num">{{ pair.value }}</div>
                   <div class="slide" style="display: block">
                     <div class="if1">
-                      <div class="icn"><img src="images/set1.png" alt=""></div>
+                      <div class="icn"><img src="@/assets/images/set1.png" alt=""></div>
                       <div class="ri">
                         <p>
                           <b>Item: </b>{{ pair.name }}
