@@ -343,6 +343,16 @@ export const ITEM_TIERS = {
     HeavyGloves: 5,
 };
 
+export const ITEM_ICONS = {
+    Neck:"fd7.png",
+    Ring:"fd8.png",
+    Chest:"fd2.png",
+    Hand:"fd6.png",
+    Waist:"fd3.png",
+    Foot:"fd4.png",
+    Head:"fd1.png",
+    Weapon:"fd5.png",
+}
 export const ITEM_SLOTS = {
     Pendant: "Neck",
     Necklace: "Neck",

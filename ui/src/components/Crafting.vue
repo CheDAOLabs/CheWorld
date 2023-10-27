@@ -74,13 +74,13 @@
                       </div>
                     </div>
                     <div class="if2">
-                      {{pair.desc}}
+                      {{ pair.desc }}
                     </div>
                   </div>
                 </li>
               </ul>
             </div>
-            <div class="title2"><img src="@/assets/images/ic1.png" alt=""><span>{{ selected.name }}</span></div>
+            <div class="title2"><img :src="selected.icon" alt=""><span>{{ selected.name }}</span></div>
             <div class="num">
               <i class="ic1" @click="decrCraftingNumber"></i>
               <input type="text" :value="craftingNumber" class="words">
@@ -95,7 +95,7 @@
               <ul>
                 <li v-for="(item,index) in addedItems" :key="index">
                   <div class="infor1">
-                    <div class="icon"><img src="@/assets/images/ic1.png" alt=""></div>
+                    <div class="icon"><img :src="item.icon" alt=""></div>
                     <div class="tit">{{ item.name }}</div>
                   </div>
                   <div class="dec">
@@ -118,7 +118,7 @@
 import {mapActions, mapMutations, mapState} from "vuex";
 import {ElMessage} from "element-plus";
 import {composite_config, item_subtypes} from "@/config/item.js";
-import {ITEM_SLOTS, ITEM_TIERS, ITEMS} from "@/system/GameData.js";
+import {ITEM_ICONS, ITEM_SLOTS, ITEM_TIERS, ITEMS} from "@/system/GameData.js";
 import {getResConfigById, getResConfigByKey, ResType} from "@/config/res_conf.js";
 
 export default {
@@ -252,56 +252,64 @@ export default {
                 id: comp.id,
                 target: comp.name,
                 name: item_name,
-                pairs: pairs
+                pairs: pairs,
+                icon: '/images/' + ITEM_ICONS[item_slot]
               });
               break;
             case 'Ring':
               this.configs.equipments.Ring.list.push({
                 id: comp.id,
                 name: item_name,
-                pairs: pairs
+                pairs: pairs,
+                icon: '/images/' + ITEM_ICONS[item_slot]
               });
               break;
             case 'Chest':
               this.configs.equipments.Chest.list.push({
                 id: comp.id,
                 name: item_name,
-                pairs: pairs
+                pairs: pairs,
+                icon: '/images/' + ITEM_ICONS[item_slot]
               });
               break;
             case 'Hand':
               this.configs.equipments.Hand.list.push({
                 id: comp.id,
                 name: item_name,
-                pairs: pairs
+                pairs: pairs,
+                icon: '/images/' + ITEM_ICONS[item_slot]
               });
               break;
             case 'Waist':
               this.configs.equipments.Waist.list.push({
                 id: comp.id,
                 name: item_name,
-                pairs: pairs
+                pairs: pairs,
+                icon: '/images/' + ITEM_ICONS[item_slot]
               });
               break;
             case 'Foot':
               this.configs.equipments.Foot.list.push({
                 id: comp.id,
                 name: item_name,
-                pairs: pairs
+                pairs: pairs,
+                icon: '/images/' + ITEM_ICONS[item_slot]
               });
               break;
             case 'Head':
               this.configs.equipments.Head.list.push({
                 id: comp.id,
                 name: item_name,
-                pairs: pairs
+                pairs: pairs,
+                icon: '/images/' + ITEM_ICONS[item_slot]
               });
               break;
             case 'Weapon':
               this.configs.equipments.Weapon.list.push({
                 id: comp.id,
                 name: item_name,
-                pairs: pairs
+                pairs: pairs,
+                icon: '/images/' + ITEM_ICONS[item_slot]
               });
               break;
 
@@ -370,10 +378,17 @@ export default {
         for (let i = 0; i < diff.addedItems.length; i++) {
           let key = diff.addedItems[i];
           let info = bag[key];
+          let name = ITEMS[info.id];
+          let tier = ITEM_TIERS[name];
+          let slot = ITEM_SLOTS[name];
+          let icon = 'images/' + ITEM_ICONS[slot];
+          console.log({name, info, tier, slot, icon});
           this.addedItems.push({
             'id': info.id,
-            'name': ITEMS[info.id],
-            'tiers': ITEM_TIERS[ITEMS[info.id]]
+            'name': name,
+            'slot': slot,
+            'tiers': tier,
+            'icon': icon,
           })
         }
 
@@ -381,7 +396,8 @@ export default {
           this.addedItems.push({
             'id': 0,
             'name': 'Roast Meat',
-            'tiers': 0
+            'tiers': 0,
+            'icon': '/images/set1.png',
           })
         }
 
