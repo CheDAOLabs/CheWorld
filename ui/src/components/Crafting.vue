@@ -53,11 +53,30 @@
 
           <div class="type1" v-if="!complate && selected">
             <div class="title">Ingredient Recipe</div>
-            <div class="list">
+            <div class="list pair">
               <ul>
                 <li v-for="(pair,index) in selected.pairs" :key="index">
                   <img src="@/assets/images/set1.png" alt="">
                   <div class="num">{{ pair.value }}</div>
+                  <div class="slide" style="display: block">
+                    <div class="if1">
+                      <div class="icn"><img src="images/set1.png" alt=""></div>
+                      <div class="ri">
+                        <p>
+                          <b>Item: </b>{{ pair.name }}
+                        </p>
+                        <p>
+                          <b>Type:</b>wild berries
+                        </p>
+                        <p>
+                          <b>Quantity: </b>{{ pair.value }}
+                        </p>
+                      </div>
+                    </div>
+                    <div class="if2">
+                      {{pair.desc}}
+                    </div>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -100,6 +119,7 @@ import {mapActions, mapMutations, mapState} from "vuex";
 import {ElMessage} from "element-plus";
 import {composite_config, item_subtypes} from "@/config/item.js";
 import {ITEM_SLOTS, ITEM_TIERS, ITEMS} from "@/system/GameData.js";
+import {getResConfigById, getResConfigByKey} from "@/config/res_conf.js";
 
 export default {
   name: 'CraftingComponent',
@@ -201,8 +221,15 @@ export default {
       for (let i = 0; i < composite_config.length; i++) {
         const comp = composite_config[i];
         const pairs = comp.composite.split(",").map(pair => {
-          const [key, value] = pair.split("|");
-          return {key: parseInt(key), value: parseInt(value)};
+          let [key, value] = pair.split("|");
+          key = parseInt(key);
+          let res_config = getResConfigById(key);
+          return {
+            key: key,
+            value: parseInt(value),
+            name: res_config.name,
+            desc: res_config.inform,
+          };
         });
         console.log(pairs);
 
@@ -222,7 +249,7 @@ export default {
             case 'Neck':
               this.configs.equipments.Neck.list.push({
                 id: comp.id,
-                target:comp.name,
+                target: comp.name,
                 name: item_name,
                 pairs: pairs
               });
@@ -402,7 +429,7 @@ export default {
 </script>
 
 <style scoped>
-.right > div > div.list > ul > li{
+.right > div > div.list > ul > li {
   width: 78px;
   height: 78px;
   display: inline-block;
@@ -427,5 +454,41 @@ export default {
   bottom: 10px;
   z-index: 44;
   font-size: 14px;
+}
+
+.pair ul li:hover .slide {
+  visibility: visible;
+  opacity: 1;
+  z-index: 5;
+  bottom: 70px;
+}
+
+
+.pair ul li .slide {
+  background: url(../images/common_float_frame_03s.png) no-repeat center center;
+
+  background-size: 100% 100%;
+
+  width: 346px;
+
+  height: 205px;
+
+  position: absolute;
+
+  bottom: 70px;
+
+  left: 100%;
+
+  font-size: 14px;
+
+  text-align: left;
+
+  padding: 14px 21px;
+  transition: all 0.4s;
+
+  visibility: hidden;
+  opacity: 0;
+  z-index: -1;
+  bottom: 80px;
 }
 </style>
