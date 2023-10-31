@@ -32,6 +32,9 @@ export default {
 
 <template>
   <div>
+    <div class="backpack" @click="onClickOpenBag">
+      <img src="@/assets/images/backpack.png" alt="">
+    </div>
     <div class="typeItem type0">
       <!--      <div class="add"></div>-->
       <div class="ov">
@@ -41,7 +44,7 @@ export default {
       </div>
     </div>
 
-    <div class="typeItem type2" style="top:150px" @click="onClickOpenBag">
+    <div class="typeItem type2" style="top:150px" >
       <!--      <div class="add"></div>-->
       <div class="ov">
         <div class="icon"><img src="@/assets/images/icon2.png" alt=""></div>
