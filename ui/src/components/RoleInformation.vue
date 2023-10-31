@@ -1,6 +1,6 @@
 <template>
-  <div class="alertmodel modal_animation" style="" >
-    <div class="center center4"  v-loading="loading" >
+  <div class="alertmodel modal_animation" style="">
+    <div class="center center4" v-loading="loading">
       <div class="close" @click="onClockClose"></div>
       <div class="titlero">
         <img src="@/assets/images/title3.png" alt="">
@@ -18,103 +18,104 @@
                     <img :src="'images/'+item" alt="">
                   </div>
                   <div class="ri" v-if="getItem(this.adventurer[index.toLowerCase()]).id!=0">
-                    <div class="titler">{{getItem(this.adventurer[index.toLowerCase()]).name}}</div>
-                    <div class="decr">Type: {{getItem(this.adventurer[index.toLowerCase()]).type}}</div>
+                    <div class="titler">{{ getItem(this.adventurer[index.toLowerCase()]).name }}</div>
+                    <div class="decr">Type: {{ getItem(this.adventurer[index.toLowerCase()]).type }}</div>
                     <div class="lv">
-                      <span>LV1</span>
+                      <span>LV{{ calculateLevel(this.adventurer.xp) }}</span>
                       <i>
-                        <em style="width:40%"></em>
+                        <em :style="'width:'+calculateProgress(this.adventurer.xp) +'%'"></em>
                       </i>
                     </div>
                   </div>
                   <div class="ri" v-else>
                     <div class="txt">None Equipped</div>
                   </div>
-                  <a href="#" v-if="getItem(this.adventurer[index.toLowerCase()]).id!=0" class="eq" @click="onClickUnEquip(getItem(this.adventurer[index.toLowerCase()]))">UNLOAD</a>
+                  <a href="#" v-if="getItem(this.adventurer[index.toLowerCase()]).id!=0" class="eq"
+                     @click="onClickUnEquip(getItem(this.adventurer[index.toLowerCase()]))">UNLOAD</a>
                 </div>
-<!--                <div class="s1">-->
-<!--                  <div class="icon"><img src="@/assets/images/fd1.png" alt=""></div>-->
-<!--                  <div class="tit">{{ getItem(this.adventurer.head).name }}</div>-->
-<!--                </div>-->
-<!--                <div class="s2" v-if="this.adventurer.head.id>0">-->
-<!--                  <p>TIERS: {{ getItem(this.adventurer.head).tiers }}</p>-->
-<!--                  <p>XP: {{ getItem(this.adventurer.head).xp }}</p>-->
-<!--                </div>-->
-<!--                <a href="#" class="eq">UNLOAD</a>-->
+                <!--                <div class="s1">-->
+                <!--                  <div class="icon"><img src="@/assets/images/fd1.png" alt=""></div>-->
+                <!--                  <div class="tit">{{ getItem(this.adventurer.head).name }}</div>-->
+                <!--                </div>-->
+                <!--                <div class="s2" v-if="this.adventurer.head.id>0">-->
+                <!--                  <p>TIERS: {{ getItem(this.adventurer.head).tiers }}</p>-->
+                <!--                  <p>XP: {{ getItem(this.adventurer.head).xp }}</p>-->
+                <!--                </div>-->
+                <!--                <a href="#" class="eq">UNLOAD</a>-->
               </li>
-<!--              <li>-->
-<!--                <div class="s1">-->
-<!--                  <div class="icon"><img src="@/assets/images/fd2.png" alt=""></div>-->
-<!--                  <div class="tit">{{ getItem(this.adventurer.chest).name }}</div>-->
-<!--                </div>-->
-<!--                <div class="s2" v-if="this.adventurer.chest.id>0">-->
-<!--                  <p>TIERS: {{ getItem(this.adventurer.chest).tiers }}</p>-->
-<!--                  <p>XP: {{ getItem(this.adventurer.chest).xp }}</p>-->
-<!--                </div>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <div class="s1">-->
-<!--                  <div class="icon"><img src="@/assets/images/fd3.png" alt=""></div>-->
-<!--                  <div class="tit">{{ getItem(this.adventurer.waist).name }}</div>-->
-<!--                </div>-->
-<!--                <div class="s2" v-if="this.adventurer.waist.id>0">-->
-<!--                  <p>TIERS: {{ getItem(this.adventurer.waist).tiers }}</p>-->
-<!--                  <p>XP: {{ getItem(this.adventurer.waist).xp }}</p>-->
-<!--                </div>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <div class="s1">-->
-<!--                  <div class="icon"><img src="@/assets/images/fd4.png" alt=""></div>-->
-<!--                  <div class="tit">{{ getItem(this.adventurer.foot).name }}</div>-->
-<!--                </div>-->
-<!--                <div class="s2" v-if="this.adventurer.foot.id>0">-->
-<!--                  <p>TIERS: {{ getItem(this.adventurer.foot).tiers }}</p>-->
-<!--                  <p>XP: {{ getItem(this.adventurer.foot).xp }}</p>-->
-<!--                </div>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <div class="s1">-->
-<!--                  <div class="icon"><img src="@/assets/images/fd5.png" alt=""></div>-->
-<!--                  <div class="tit">{{ getItem(this.adventurer.weapon).name }}</div>-->
-<!--                </div>-->
-<!--                <div class="s2" v-if="this.adventurer.weapon.id>0">-->
-<!--                  <p>TIERS: {{ getItem(this.adventurer.weapon).tiers }}</p>-->
-<!--                  <p>XP: {{ getItem(this.adventurer.weapon).xp }}</p>-->
+              <!--              <li>-->
+              <!--                <div class="s1">-->
+              <!--                  <div class="icon"><img src="@/assets/images/fd2.png" alt=""></div>-->
+              <!--                  <div class="tit">{{ getItem(this.adventurer.chest).name }}</div>-->
+              <!--                </div>-->
+              <!--                <div class="s2" v-if="this.adventurer.chest.id>0">-->
+              <!--                  <p>TIERS: {{ getItem(this.adventurer.chest).tiers }}</p>-->
+              <!--                  <p>XP: {{ getItem(this.adventurer.chest).xp }}</p>-->
+              <!--                </div>-->
+              <!--              </li>-->
+              <!--              <li>-->
+              <!--                <div class="s1">-->
+              <!--                  <div class="icon"><img src="@/assets/images/fd3.png" alt=""></div>-->
+              <!--                  <div class="tit">{{ getItem(this.adventurer.waist).name }}</div>-->
+              <!--                </div>-->
+              <!--                <div class="s2" v-if="this.adventurer.waist.id>0">-->
+              <!--                  <p>TIERS: {{ getItem(this.adventurer.waist).tiers }}</p>-->
+              <!--                  <p>XP: {{ getItem(this.adventurer.waist).xp }}</p>-->
+              <!--                </div>-->
+              <!--              </li>-->
+              <!--              <li>-->
+              <!--                <div class="s1">-->
+              <!--                  <div class="icon"><img src="@/assets/images/fd4.png" alt=""></div>-->
+              <!--                  <div class="tit">{{ getItem(this.adventurer.foot).name }}</div>-->
+              <!--                </div>-->
+              <!--                <div class="s2" v-if="this.adventurer.foot.id>0">-->
+              <!--                  <p>TIERS: {{ getItem(this.adventurer.foot).tiers }}</p>-->
+              <!--                  <p>XP: {{ getItem(this.adventurer.foot).xp }}</p>-->
+              <!--                </div>-->
+              <!--              </li>-->
+              <!--              <li>-->
+              <!--                <div class="s1">-->
+              <!--                  <div class="icon"><img src="@/assets/images/fd5.png" alt=""></div>-->
+              <!--                  <div class="tit">{{ getItem(this.adventurer.weapon).name }}</div>-->
+              <!--                </div>-->
+              <!--                <div class="s2" v-if="this.adventurer.weapon.id>0">-->
+              <!--                  <p>TIERS: {{ getItem(this.adventurer.weapon).tiers }}</p>-->
+              <!--                  <p>XP: {{ getItem(this.adventurer.weapon).xp }}</p>-->
 
-<!--                    <el-button size="small" @click="onClickUnEquip(this.adventurer.weapon)">unequip</el-button>-->
+              <!--                    <el-button size="small" @click="onClickUnEquip(this.adventurer.weapon)">unequip</el-button>-->
 
-<!--                </div>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <div class="s1">-->
-<!--                  <div class="icon"><img src="@/assets/images/fd6.png" alt=""></div>-->
-<!--                  <div class="tit">{{ getItem(this.adventurer.hand).name }}</div>-->
-<!--                </div>-->
-<!--                <div class="s2" v-if="this.adventurer.hand.id>0">-->
-<!--                  <p>TIERS: {{ getItem(this.adventurer.hand).tiers }}</p>-->
-<!--                  <p>XP: {{ getItem(this.adventurer.hand).xp }}</p>-->
-<!--                </div>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <div class="s1">-->
-<!--                  <div class="icon"><img src="@/assets/images/fd7.png" alt=""></div>-->
-<!--                  <div class="tit">{{ getItem(this.adventurer.neck).name }}</div>-->
-<!--                </div>-->
-<!--                <div class="s2" v-if="this.adventurer.neck.id>0">-->
-<!--                  <p>TIERS: {{ getItem(this.adventurer.neck).tiers }}</p>-->
-<!--                  <p>XP: {{ getItem(this.adventurer.neck).xp }}</p>-->
-<!--                </div>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <div class="s1">-->
-<!--                  <div class="icon"><img src="@/assets/images/fd8.png" alt=""></div>-->
-<!--                  <div class="tit">{{ getItem(this.adventurer.ring).name }}</div>-->
-<!--                </div>-->
-<!--                <div class="s2" v-if="this.adventurer.ring.id>0">-->
-<!--                  <p>TIERS: {{ getItem(this.adventurer.ring).tiers }}</p>-->
-<!--                  <p>XP: {{ getItem(this.adventurer.ring).xp }}</p>-->
-<!--                </div>-->
-<!--              </li>-->
+              <!--                </div>-->
+              <!--              </li>-->
+              <!--              <li>-->
+              <!--                <div class="s1">-->
+              <!--                  <div class="icon"><img src="@/assets/images/fd6.png" alt=""></div>-->
+              <!--                  <div class="tit">{{ getItem(this.adventurer.hand).name }}</div>-->
+              <!--                </div>-->
+              <!--                <div class="s2" v-if="this.adventurer.hand.id>0">-->
+              <!--                  <p>TIERS: {{ getItem(this.adventurer.hand).tiers }}</p>-->
+              <!--                  <p>XP: {{ getItem(this.adventurer.hand).xp }}</p>-->
+              <!--                </div>-->
+              <!--              </li>-->
+              <!--              <li>-->
+              <!--                <div class="s1">-->
+              <!--                  <div class="icon"><img src="@/assets/images/fd7.png" alt=""></div>-->
+              <!--                  <div class="tit">{{ getItem(this.adventurer.neck).name }}</div>-->
+              <!--                </div>-->
+              <!--                <div class="s2" v-if="this.adventurer.neck.id>0">-->
+              <!--                  <p>TIERS: {{ getItem(this.adventurer.neck).tiers }}</p>-->
+              <!--                  <p>XP: {{ getItem(this.adventurer.neck).xp }}</p>-->
+              <!--                </div>-->
+              <!--              </li>-->
+              <!--              <li>-->
+              <!--                <div class="s1">-->
+              <!--                  <div class="icon"><img src="@/assets/images/fd8.png" alt=""></div>-->
+              <!--                  <div class="tit">{{ getItem(this.adventurer.ring).name }}</div>-->
+              <!--                </div>-->
+              <!--                <div class="s2" v-if="this.adventurer.ring.id>0">-->
+              <!--                  <p>TIERS: {{ getItem(this.adventurer.ring).tiers }}</p>-->
+              <!--                  <p>XP: {{ getItem(this.adventurer.ring).xp }}</p>-->
+              <!--                </div>-->
+              <!--              </li>-->
             </ul>
           </div>
         </div>
@@ -144,7 +145,7 @@
               </ul>
             </div>
           </div>
-          <div class="btns"  style="display: flex">
+          <div class="btns" style="display: flex">
             <button class="btn2" v-show="showConfirm()" @click="reset">reset</button>
             <button class="btn2" v-show="showConfirm()" @click="onClickUpgrade">confirm</button>
           </div>
@@ -159,7 +160,7 @@
 import {mapActions, mapMutations, mapState} from "vuex";
 import {stat_desc, stat_desc2} from "../config/stat.js";
 import {ITEM_ICONS, ITEM_TIERS, ITEM_TYPES, ITEMS} from "../system/GameData.js";
-import {playClickSound} from "@/utils/index.js";
+import {calculateLevel, calculateProgress, playClickSound} from "@/utils/index.js";
 
 export default {
   name: 'RoleInformation',
@@ -171,7 +172,7 @@ export default {
     stat_desc() {
       return stat_desc2
     },
-    ITEM_ICONS(){
+    ITEM_ICONS() {
       return ITEM_ICONS
     },
     ...mapState(['adventurer']),
@@ -194,8 +195,10 @@ export default {
   },
 
   methods: {
+    calculateProgress,
+    calculateLevel,
     ...mapMutations(['setShowInformation']),
-    ...mapActions(['upgrade','unequip']),
+    ...mapActions(['upgrade', 'unequip']),
     init() {
       console.log(this.adventurer);
       this.currenUpgrades = {
@@ -213,9 +216,6 @@ export default {
       let res = this.currenUpgrades.Strength + this.currenUpgrades.Dexterity + this.currenUpgrades.Vitality + this.currenUpgrades.Intelligence + this.currenUpgrades.Wisdom + this.currenUpgrades.Charisma + this.currenUpgrades.Luck > 0;
       console.log("showConfirm", res);
       return res;
-    },
-    calculateLevel(xp) {
-      return Math.max(Math.floor(Math.sqrt(xp)), 1);
     },
     stat: function (key) {
       return this.adventurer[key.toLowerCase()] + this.currenUpgrades[key];
@@ -268,14 +268,14 @@ export default {
         xp: i.xp,
         id: i.id,
         tiers: tiers,
-        type:type
+        type: type
       }
     },
-    async onClickUnEquip(item){
+    async onClickUnEquip(item) {
       playClickSound();
       await this.unequip(item.id)
     },
-    async reset(){
+    async reset() {
       playClickSound();
       this.init()
     }

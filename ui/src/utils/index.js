@@ -149,3 +149,15 @@ export const playClickSound = () => {
     // var button = document.querySelector('button');
     // button.addEventListener('click', playSound);
 }
+
+export const calculateLevel = (xp) => {
+    return Math.max(Math.floor(Math.sqrt(xp)), 1);
+}
+
+export const calculateProgress = (xp) => {
+    const currentLevelXP =
+        calculateLevel(xp) > 1 ? Math.floor(calculateLevel(xp)) ** 2 : 0;
+    const nextLevelXP = Math.floor(calculateLevel(xp) + 1) ** 2;
+
+    return ((xp - currentLevelXP) / (nextLevelXP - currentLevelXP)) * 100;
+};
