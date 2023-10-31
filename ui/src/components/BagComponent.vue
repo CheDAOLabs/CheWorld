@@ -16,13 +16,13 @@ export default {
   methods: {
     ...mapActions(['equip', 'drop_items', 'use_item']),
     async onClickEquip(item) {
-       await this.equip(41)
+      await this.equip(item.id)
     },
-    async onClickUseItem() {
-      //todo await this.use_item()
+    async onClickUseItem(item) {
+      await this.use_item(item.id)
     },
-    async drop_item() {
-      //todo await this.drop_items()
+    async onClickDropItem(item) {
+      await this.drop_items(item.id)
     }
   }
 
@@ -37,9 +37,9 @@ export default {
         <div>{{ index }}</div>
         <!--        <div class="item">{{ item.name }}</div>-->
         <!--        <div class="item">{{ item.count }}</div>-->
-        <button class="item" @click="onClickEquip">Equip</button>
-        <button class="item" @click="onClickUseItem">Use</button>
-        <button class="item" @click="drop_item">Drop</button>
+        <button class="item" @click="onClickEquip(item)">Equip</button>
+        <button class="item" @click="onClickUseItem(item)">Use</button>
+        <button class="item" @click="onClickDropItem(item)">Drop</button>
       </li>
     </ul>
   </div>

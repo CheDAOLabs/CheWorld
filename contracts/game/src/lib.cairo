@@ -1231,6 +1231,14 @@ mod Game {
 
         __event_Composited(ref self, adventurer_state_with_bag,cost,res,reward,times);
 
+        // update players last action block number
+        adventurer.set_last_action(starknet::get_block_info().unbox().block_number);
+
+        // if the upgrade mutated the adventurer's bag
+        if (bag.mutated) {
+            _pack_bag(ref self, adventurer_id, bag);
+        }
+
         // pack and save adventurer
         _pack_adventurer_remove_stat_boost(
             ref self, ref adventurer, adventurer_id, stat_boosts
