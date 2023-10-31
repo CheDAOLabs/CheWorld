@@ -61,7 +61,7 @@
                   <p>TIERS: {{ getItem(this.adventurer.weapon).tiers }}</p>
                   <p>XP: {{ getItem(this.adventurer.weapon).xp }}</p>
 
-                    <el-button size="small">Drop</el-button>
+                    <el-button size="small" @click="onClickUnEquip(this.adventurer.weapon)">unequip</el-button>
 
                 </div>
               </li>
@@ -241,6 +241,9 @@ export default {
         id: i.id,
         tiers: tiers
       }
+    },
+    async onClickUnEquip(item){
+      await this.unequip(item.id)
     }
   }
 }

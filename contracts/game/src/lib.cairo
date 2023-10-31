@@ -2053,8 +2053,10 @@ mod Game {
 
             let unequipping_item = adventurer.get_item_at_slot(ImplLoot::get_slot(unequipped_item_id));
 
+
             // if the item exists
             if unequipping_item.id != 0 {
+                adventurer.drop_item(unequipped_item_id);
                 // put it into the adventurer's bag
                 bag.add_item(unequipping_item);
             }
