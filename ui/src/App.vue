@@ -13,7 +13,8 @@
     <LoginPage v-if="currPage==='login'"/>
     <MainPage v-if="currPage==='main'"/>
     <AdventureListPage v-if="currPage==='adventure_list'"/>
-    <WorldPage v-if="adventurer" :class="[currPage==='world'?'slide slide-in':'slide slide-out']"/>
+<!--    <WorldPage v-if="adventurer" :class="[currPage==='world'?'slide slide-in':'slide slide-out']"/>-->
+    <WorldPage v-if="currPage==='world'" />
 
     <audio ref="audioPlayer" src="music/ui/game_over.mp3" autoplay loop></audio>
   </div>
@@ -76,18 +77,18 @@ export default {
   transition: transform 0.2s;
 }
 
-.slide {
+.world_slide {
   left: 100%;  /* 设置初始位置在右侧屏幕之外 */
   top: 50%;  /* 调整初始位置为您需要的位置 */
   transform: translateY(-50%);
   transition: left 0.2s ease-in-out; /* 添加过渡效果 */
 }
 
-.slide-out {
+.world_slide-out {
   //left: -200px; /* 将位置调整为左侧边缘 */
 }
 
-.slide-in {
+.world_slide-in {
   left: 0; /* 激活时将位置调整为左侧边缘 */
 }
 
