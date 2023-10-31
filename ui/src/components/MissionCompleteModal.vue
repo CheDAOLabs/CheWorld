@@ -27,6 +27,7 @@
 
 <script>
 import {mapActions, mapMutations} from "vuex";
+import {playClickSound} from "@/utils/index.js";
 
 export default {
   name: 'MissionCompleteModal',
@@ -37,6 +38,7 @@ export default {
   methods: {
     ...mapMutations(['setShowMissionCompleted', 'setCurrPage']),
     async onClick() {
+      playClickSound();
       this.setShowMissionCompleted(false);
     },
 

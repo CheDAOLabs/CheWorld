@@ -1,6 +1,7 @@
 <script>
 
 import {mapMutations} from "vuex";
+import {playClickSound} from "@/utils/index.js";
 
 export default {
   name: 'DiedModal',
@@ -12,6 +13,7 @@ export default {
   methods: {
     ...mapMutations(['setShowInformation', 'setCurrPage']),
     onClick() {
+      playClickSound();
       this.setCurrPage('login');
     }
   }

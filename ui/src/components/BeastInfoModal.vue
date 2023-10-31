@@ -1,5 +1,6 @@
 <script>
 import {mapActions, mapMutations} from "vuex";
+import {playClickSound} from "@/utils/index.js";
 
 export default {
   name: "BeastInfoModal",
@@ -7,14 +8,17 @@ export default {
     ...mapMutations(["setShowBeastInfoModal","setShowBattleMask"]),
     ...mapActions(["attack", "explore", 'flee']),
     onClickClose() {
+      playClickSound();
       this.setShowBeastInfoModal(false)
     },
     async onClickAttack() {
+      playClickSound();
       // this.setShowBattleMask(true)
       await this.attack(false, null);
       // this.setShowBattleMask(false)
     },
     async onClickFlee() {
+      playClickSound();
       await this.flee(false, null)
     }
   }

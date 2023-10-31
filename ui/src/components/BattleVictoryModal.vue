@@ -1,5 +1,6 @@
 <script>
 import {mapMutations} from "vuex";
+import {playClickSound} from "@/utils/index.js";
 
 export default {
   name: "BattleVictoryModal",
@@ -9,6 +10,7 @@ export default {
   methods: {
     ...mapMutations(['setShowBattleVictory']),
     onClickClose() {
+      playClickSound();
       this.setShowBattleVictory(false);
     }
   }

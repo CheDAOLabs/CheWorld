@@ -1,6 +1,7 @@
 <script>
 import {mapMutations, mapState} from "vuex";
 import $ from "jquery";
+import {playClickSound} from "@/utils/index.js";
 
 export default {
   name: 'EventLogModal',
@@ -53,6 +54,7 @@ export default {
       return String(time).padStart(2, '0');
     },
     onClickSwitch() {
+      playClickSound();
       this.setShowLogModal(!this.showLogModal);
     }
   }

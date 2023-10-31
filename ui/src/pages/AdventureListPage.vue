@@ -224,6 +224,7 @@ export default {
       return this.questings[this.questingIndex];
     },
     checkName() {
+      playClickSound();
       let res = this.validateString(this.name);
       if (res) {
         this.step++;

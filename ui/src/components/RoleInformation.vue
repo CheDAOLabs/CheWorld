@@ -125,7 +125,7 @@
             </div>
           </div>
           <div class="btns"  style="display: flex">
-            <button class="btn2" v-show="showConfirm()" @click="init">reset</button>
+            <button class="btn2" v-show="showConfirm()" @click="reset">reset</button>
             <button class="btn2" v-show="showConfirm()" @click="onClickUpgrade">confirm</button>
           </div>
         </div>
@@ -139,6 +139,7 @@
 import {mapActions, mapMutations, mapState} from "vuex";
 import {stat_desc, stat_desc2} from "../config/stat.js";
 import {ITEM_TIERS, ITEMS} from "../system/GameData.js";
+import {playClickSound} from "@/utils/index.js";
 
 export default {
   name: 'RoleInformation',
@@ -197,9 +198,11 @@ export default {
       return this.adventurer[key.toLowerCase()] + this.currenUpgrades[key];
     },
     onClockClose() {
+      playClickSound();
       this.setShowInformation(false)
     },
     onClickAddState(key) {
+      playClickSound();
       console.log(key, this.point);
       if (isNaN(this.point) || this.point <= 0) {
         return;
@@ -208,6 +211,7 @@ export default {
       this.currenUpgrades[key]++;
     },
     async onClickUpgrade() {
+      playClickSound();
       if (this.loading) {
         return;
       }
@@ -243,7 +247,12 @@ export default {
       }
     },
     async onClickUnEquip(item){
+      playClickSound();
       await this.unequip(item.id)
+    },
+    async reset(){
+      playClickSound();
+      this.init()
     }
   }
 }

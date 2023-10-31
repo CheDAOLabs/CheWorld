@@ -1,6 +1,7 @@
 <script>
 import {mapActions, mapState} from "vuex";
 import {ITEMS} from "../system/GameData.js";
+import {playClickSound} from "@/utils/index.js";
 
 export default {
   name: "BagComponent",
@@ -17,12 +18,15 @@ export default {
   methods: {
     ...mapActions(['equip', 'drop_items', 'eat']),
     async onClickEquip(item) {
+      playClickSound();
       await this.equip(item.id)
     },
     async onClickUseItem(item) {
+      playClickSound();
       await this.eat()
     },
     async onClickDropItem(item) {
+      playClickSound();
       await this.drop_items(item.id)
     },
     getItemName(item){

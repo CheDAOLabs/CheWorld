@@ -120,6 +120,7 @@ import {ElMessage} from "element-plus";
 import {composite_config, item_subtypes} from "@/config/item.js";
 import {ITEM_ICONS, ITEM_SLOTS, ITEM_TIERS, ITEMS} from "@/system/GameData.js";
 import {getResConfigById, getResConfigByKey, ResType} from "@/config/res_conf.js";
+import {playClickSound} from "@/utils/index.js";
 
 export default {
   name: 'CraftingComponent',
@@ -321,12 +322,15 @@ export default {
 
     },
     closeCrafting() {
+      playClickSound();
       this.setShowCrafting(false);
     },
     incrCraftingNumber() {
+      playClickSound();
       this.setCraftingNumber(this.craftingNumber + 1);
     },
     decrCraftingNumber() {
+      playClickSound();
       this.setCraftingNumber(this.craftingNumber - 1);
     },
     diffBags(bag1, bag2) {
@@ -357,6 +361,7 @@ export default {
       };
     },
     async doCrafting() {
+      playClickSound();
       // console.log(id, name, pairs)
       if (this.loading === true) {
         return;
@@ -416,14 +421,17 @@ export default {
       // })
     },
     showDetail(subid) {
+      playClickSound();
       console.log("subid", subid)
       this.configs.equipments[subid].showDetails = !this.configs.equipments[subid].showDetails
       // this.setEquipmentShowDetail(subid)
     },
     showFoodDetail(subid) {
+      playClickSound();
       this.configs.foods[subid].showDetails = !this.configs.foods[subid].showDetails
     },
     async doSelect(item) {
+      playClickSound();
       if (this.loading) {
         return;
       }
@@ -438,6 +446,7 @@ export default {
       this.complate = null;
     },
     onClickCompleteConform() {
+      playClickSound();
       this.selected = null;
       this.complate = null;
     }

@@ -1,6 +1,7 @@
 <script>
 
 import {mapMutations, mapState} from "vuex";
+import {playClickSound} from "@/utils/index.js";
 
 export default {
   name: 'FloatingBall',
@@ -21,6 +22,7 @@ export default {
       return maxHealth;
     },
     onClickOpenBag(){
+      playClickSound();
       console.log("onClickOpenBag");
       this.setShowBagModal(!this.showBagModal);
     }

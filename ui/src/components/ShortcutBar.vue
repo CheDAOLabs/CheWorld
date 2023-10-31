@@ -1,6 +1,7 @@
 <script>
 import {mapState} from "vuex";
 import {getResConfigByKey, ResType} from "@/config/res_conf.js";
+import {playClickSound} from "@/utils/index.js";
 
 export default {
   name: 'ShortcutBar',
@@ -58,6 +59,9 @@ export default {
         res: paginatedRes,
         empty: empty
       };
+    },
+    onClick(){
+      playClickSound();
     }
   }
 }
@@ -66,7 +70,7 @@ export default {
 <template>
   <div class="controls">
     <ul>
-      <li v-for="item in getRenderData().res " :key="item">
+      <li v-for="item in getRenderData().res " :key="item" @click="onClick">
         <img src="@/assets/images/set1.png" alt="">
         <div class="num">{{ item.num }}</div>
         <div class="slide">

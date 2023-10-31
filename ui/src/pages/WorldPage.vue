@@ -103,6 +103,7 @@ import BeastInfoModal from "@/components/BeastInfoModal.vue";
 import BattleMask from "@/components/BattleMask.vue";
 import BattleVictoryModal from "@/components/BattleVictoryModal.vue";
 import BagComponent from "@/components/BagComponent.vue";
+import {playClickSound} from "@/utils/index.js";
 
 
 export default {
@@ -159,6 +160,7 @@ export default {
     ...mapMutations(['setShowMissionCompleted', 'setCurrPage', 'setShowInformation', 'setShowBeastInfoModal']),
     ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade', 'harvesting']),
     async onClickHarvesting() {
+      playClickSound();
 
       const current_timestamp = Math.floor(Date.now() / 1000);
       const last_timestamp = this.adventurer.resources.last_timestamp;
@@ -174,6 +176,7 @@ export default {
       this.setShowMissionCompleted(true);
     },
     async onClickAttack() {
+      playClickSound();
       let monster = this.adventurer.beastSpecs;
       if (monster) {
         // await this.attack(false, null);
@@ -189,6 +192,7 @@ export default {
 
     },
     async onClickBackHome() {
+      playClickSound();
       this.setCurrPage('main');
     },
     getCanHarvestNum(id) {

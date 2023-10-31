@@ -11,7 +11,7 @@
       <AdventureListPage v-if="currPage==='adventure_list'"/>
       <WorldPage v-if="currPage==='world'"/>
 
-      <audio ref="audioPlayer" src="music/ui/game_over.mp3" autoplay></audio>
+      <audio ref="audioPlayer" src="music/ui/game_over.mp3" autoplay loop></audio>
     </div>
   </div>
 </template>
