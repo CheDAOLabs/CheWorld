@@ -1,7 +1,7 @@
 <script>
 import {mapActions, mapState} from "vuex";
-import {ITEM_TYPES, ITEMS} from "../system/GameData.js";
-import {playClickSound} from "@/utils/index.js";
+import {ITEM_ICONS, ITEM_TYPES, ITEMS} from "../system/GameData.js";
+import {calculateLevel, calculateProgress, playClickSound} from "@/utils/index.js";
 
 export default {
   name: "BagComponent",
@@ -16,6 +16,8 @@ export default {
     console.log(this.adventurer.bag)
   },
   methods: {
+    calculateProgress,
+    calculateLevel,
     ...mapActions(['equip', 'drop_items', 'eat']),
     async onClickEquip(item) {
       playClickSound();
@@ -35,6 +37,9 @@ export default {
     getItemType(item) {
       return ITEM_TYPES[item.id]
     },
+    getItemIcon(item){
+      return ITEM_ICONS[this.getItemType(item)]
+    }
   }
 
 }
@@ -62,15 +67,15 @@ export default {
         <li v-for="(item, index) in adventurer.bag" :key="index" v-show="item && item.id!==0">
           <div class="border">
             <div class="imgbox">
-              <img src="@/assets/images/set1.png" alt="">
+              <img :src="'images/'+getItemIcon(item)" alt="">
             </div>
             <div class="ri">
               <div class="title">{{ getItemName(item) }}</div>
               <div class="dec">Type: {{ getItemType(item) }}</div>
               <div class="lv">
-                <span>LV1</span>
+                <span>LV{{calculateLevel(item.xp)}}</span>
                 <i>
-                  <em style="width:40%"></em>
+                  <em :style="'width:'+calculateProgress(item.xp)+'%'"></em>
                 </i>
               </div>
             </div>

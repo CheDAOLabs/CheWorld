@@ -168,6 +168,12 @@ export default {
   mounted() {
     this.init();
   },
+  watch: {
+    adventurer(newValue, oldValue) {
+      // 在 count 发生变化时执行的操作
+     this.init()
+    },
+  },
   computed: {
     stat_desc() {
       return stat_desc2
