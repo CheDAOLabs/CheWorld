@@ -63,4 +63,23 @@ export default {
   transform: scale(0);
   background: rgb(0,0,0,0);
 }
+.modal_animation{
+  opacity: 1;
+  transition: transform 0.2s;
+}
+
+.slide-in {
+
+  //background-color: #f00;  /* 调整背景颜色为您需要的颜色 */
+  //position: absolute;
+  //left: -200px;  /* 设置初始位置在左侧屏幕之外 */
+  //top: 50%;  /* 调整初始位置为您需要的位置 */
+  transform: translateY(-50%);
+  transition: left 0.5s ease-in-out;  /* 添加过渡效果 */
+}
+
+.slide-in.active {
+  left: 0;  /* 激活时将位置调整为左侧边缘 */
+}
+
 </style>

@@ -58,7 +58,7 @@
     <AvatarComponent/>
     <FloatingBall/>
     <ShortcutBar/>
-    <Crafting v-if="showCrafting"/>
+    <Crafting :class="[showCrafting?'show':'hide']"/>
     <RoleInformation :class="[showInformation?'show':'hide']"/>
     <DiedModal v-if="showDeadModal"/>
     <BagComponent v-if="showBagModal"/>

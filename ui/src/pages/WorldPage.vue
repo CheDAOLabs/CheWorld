@@ -60,7 +60,7 @@
           </div>
         </div>
 
-        <div class="centerPeople" @click="setShowInformation(true)">
+        <div class="centerPeople" @click="onClickSelf">
           <img src="@/assets/images/userimg.png" alt="">
         </div>
 
@@ -78,7 +78,7 @@
     <FloatingBall/>
     <ShortcutBar/>
     <MissionCompleteModal v-if="showMissionCompleted"/>
-    <RoleInformation v-if="showInformation"/>
+    <RoleInformation :class="[showInformation?'show':'hide']"/>
     <DiedModal v-if="showDeadModal"/>
     <BeastInfoModal v-if="showBeastInfoModal"/>
     <BattleVictoryModal v-if="showBattleVictory"/>
@@ -222,7 +222,10 @@ export default {
 
       return all;
     },
-
+    onClickSelf(){
+      playClickSound();
+      this.setShowInformation(true)
+    }
   }
 }
 

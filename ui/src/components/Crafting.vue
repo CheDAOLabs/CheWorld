@@ -1,5 +1,5 @@
 <template>
-  <div class="alertModel">
+  <div class="alertModel modal_animation">
     <div class="content">
       <div class="logo"><img src="@/assets/images/logo2.png" alt=""></div>
       <div class="close" @click="closeCrafting"></div>

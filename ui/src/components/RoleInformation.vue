@@ -259,9 +259,5 @@ export default {
 </script>
 
 <style>
-.modal_animation{
-  transform:  scale(1);
-  opacity: 1;
-  transition: transform 0.2s;
-}
+
 </style>
