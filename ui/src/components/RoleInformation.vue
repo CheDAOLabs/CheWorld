@@ -123,7 +123,7 @@
           <div class="xt">
             <div class="tit">LV {{ calculateLevel(this.adventurer.xp) }}</div>
             <div class="val">
-              <em :style="'width'+calculateProgress(this.adventurer.xp)+'%'"></em>
+              <em :style="'width:'+calculateProgress(this.adventurer.xp)+'%'"></em>
             </div>
           </div>
           <div class="Point">
