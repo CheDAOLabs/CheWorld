@@ -169,9 +169,10 @@ export default {
     this.init();
   },
   watch: {
-    adventurer(newValue, oldValue) {
+    showInformation(newValue, oldValue) {
       // 在 count 发生变化时执行的操作
-     this.init()
+      console.log("showInformation")
+      this.init()
     },
   },
   computed: {
@@ -181,7 +182,7 @@ export default {
     ITEM_ICONS() {
       return ITEM_ICONS
     },
-    ...mapState(['adventurer']),
+    ...mapState(['adventurer','showInformation']),
 
   },
   data() {
