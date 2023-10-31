@@ -5,7 +5,7 @@ import {parseEvents} from "../system/parseEvents.js";
 import {Contract, getChecksumAddress, hash, TransactionStatus, uint256} from 'starknet';
 
 
-export const contract_address = "0x051058f0b240ede965f5b93107fb0f4ffe056b9205a96f964b3c37e314ba3ff2";
+export const contract_address = "0x05f935f288be3f7064ee22743e793d1a909852364f47afee39064d248380cdbc";
 import contract_abi from "./abi.json";
 import {ElMessage} from "element-plus";
 import {BEASTS, ITEMS} from "../system/GameData.js";
@@ -609,6 +609,39 @@ export const store = createStore({
 
             context.commit("doEvents", events)
 
+        },
+        async unequip(context, item) {
+
+            const newEquipItems = [
+                // ...equipItems,
+                // getKeyFromValue(ITEMS, item) ?? "",
+                item.toString(),
+            ];
+            const calldata = [
+                context.state.adventurer?.id?.toString() ?? "", "0",
+                newEquipItems.length.toString(),
+                ...newEquipItems,
+            ];
+            console.log("unequip", item, calldata)
+
+            const mintAdventurerTx = {
+                contractAddress: contract_address,
+                entrypoint: "unequip",
+                calldata: calldata,
+                metadata: `Un Equipping ${item}!`,
+            };
+
+            const tx = await context.state.account?.execute(mintAdventurerTx);
+
+            const receipt = await context.dispatch('poolReceipt', tx.transaction_hash);
+
+            console.log('receipt', receipt);
+
+            let events = await parseEvents(receipt);
+
+            console.log('events', events);
+
+            context.commit("doEvents", events)
         },
         async equip(context, item) {
 

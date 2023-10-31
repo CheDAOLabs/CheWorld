@@ -171,7 +171,7 @@ export default {
 
   methods: {
     ...mapMutations(['setShowInformation']),
-    ...mapActions(['upgrade']),
+    ...mapActions(['upgrade','unequip']),
     init() {
       console.log(this.adventurer);
       this.currenUpgrades = {
