@@ -284,9 +284,15 @@ export const store = createStore({
                         break
                     case "EquippedItems":
                         ElMessage('EquippedItems')
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerStateWithBag.adventurerState);
+                        this.commit('setAdventurerBag', event.data.data.adventurerStateWithBag.bag);
+                            // [0].data.data.equippedItems
+                            // [0].data.data.unequippedItems
                         break;
                     case "DroppedItems":
                         ElMessage('DroppedItems')
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerStateWithBag.adventurerState);
+                        this.commit('setAdventurerBag', event.data.data.adventurerStateWithBag.bag);
                         break;
                     case "GreatnessIncreased":
                         ElMessage('GreatnessIncreased')
@@ -350,6 +356,10 @@ export const store = createStore({
 
                         break;
                     case "Composited":
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerStateWithBag.adventurerState);
+                        state.adventurer.resources = event.data.data.res
+                        break;
+                    case "Eat":
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerStateWithBag.adventurerState);
                         state.adventurer.resources = event.data.data.res
                         break;

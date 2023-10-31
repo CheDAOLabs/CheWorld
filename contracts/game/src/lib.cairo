@@ -453,6 +453,73 @@ mod Game {
         //@param self The current state of the contract.
         //@param adventurer_id The ID of the adventurer to equip.
         //@param items An array of items to equip the adventurer with.
+        fn unequip(ref self: ContractState, adventurer_id: u256, items: Array<u8>) {
+            // unpack adventurer from storage and apply item stat boosts
+            let (mut adventurer, stat_boosts) = _unpack_adventurer_with_stat_boosts(
+                @self, adventurer_id
+            );
+
+            // get adventurers bag
+            let mut bag = _bag_unpacked(@self, adventurer_id);
+
+            // assert action is valid
+            _assert_ownership(@self, adventurer_id);
+            _assert_not_dead(adventurer);
+            assert(items.len() != 0, messages::NO_ITEMS);
+            assert(items.len() <= 8, messages::TOO_MANY_ITEMS);
+
+            // equip items, passing in items as a clone so we can maintain ownership of original for event
+            _unequip_items(ref self, ref adventurer, ref bag, adventurer_id, items.clone());
+
+            // if the adventurer is equipping an item during battle
+            if (adventurer.in_battle()) {
+            // the beast counter attacks
+
+            let (adventurer_entropy, global_entropy) = _get_adventurer_and_global_entropy(
+                @self, adventurer_id
+            );
+
+            let (beast, beast_seed) = adventurer.get_beast(adventurer_entropy);
+
+            let (attack_rnd_1, attack_rnd_2) = AdventurerUtils::get_randomness(
+                adventurer.xp, adventurer_entropy, global_entropy.into()
+            );
+
+            let beast_battle_details = _beast_counter_attack(
+                ref self,
+                ref adventurer,
+                adventurer_id,
+                beast,
+                beast_seed,
+                attack_rnd_1,
+                attack_rnd_2,
+            );
+
+            // emit event
+            __event_AttackedByBeast(ref self, adventurer, adventurer_id, beast_battle_details);
+
+            // if adventurer died from counter attack
+            if (adventurer.health == 0) {
+                _process_adventurer_death(ref self, adventurer, adventurer_id, beast.id, 0);
+                }
+            }
+
+            // remove stats, pack, and save adventurer
+            _pack_adventurer_remove_stat_boost(
+                ref self, ref adventurer, adventurer_id, stat_boosts
+            );
+
+            // if the bag was mutated
+            if bag.mutated {
+                // pack and save it
+                _pack_bag(ref self, adventurer_id, bag);
+            }
+        }
+
+        //@notice Equip adventurer with the specified items.
+        //@param self The current state of the contract.
+        //@param adventurer_id The ID of the adventurer to equip.
+        //@param items An array of items to equip the adventurer with.
         fn equip(ref self: ContractState, adventurer_id: u256, items: Array<u8>) {
             // unpack adventurer from storage and apply item stat boosts
             let (mut adventurer, stat_boosts) = _unpack_adventurer_with_stat_boosts(
@@ -1955,6 +2022,50 @@ mod Game {
 
         // return the item being unequipped for events
         unequipping_item.id
+    }
+
+    // @dev Equips an item to the adventurer by removing it from the bag and attaching it to the adventurer. If there's already an item in the slot being equipped, it moves the existing item to the bag.
+    // @param self The contract state
+    // @param adventurer The adventurer who is equipping the item
+    // @param bag The bag containing the adventurer's items
+    // @param adventurer_id The identifier of the adventurer
+    // @param item_id The identifier of the item being equipped
+    // @return an array of items that were unequipped as a result of equipping the items
+    fn _unequip_items(
+        ref self: ContractState,
+        ref adventurer: Adventurer,
+        ref bag: Bag,
+        adventurer_id: u256,
+        items_to_unequip: Array<u8>,
+    ) {
+        let mut equipped_items = ArrayTrait::<u8>::new();
+
+        let unequipped_items = items_to_unequip.clone();
+
+        let mut i: u32 = 0;
+        loop {
+            if i == items_to_unequip.len() {
+                break ();
+            }
+
+            // get the item
+            let unequipped_item_id = *items_to_unequip.at(i);
+
+            let unequipping_item = adventurer.get_item_at_slot(ImplLoot::get_slot(unequipped_item_id));
+
+            // if the item exists
+            if unequipping_item.id != 0 {
+                // put it into the adventurer's bag
+                bag.add_item(unequipping_item);
+            }
+
+            i += 1;
+        };
+
+        // and emit equipped item event
+        __event_EquippedItems(
+            ref self, adventurer, adventurer_id, bag, equipped_items, unequipped_items,
+        );
     }
 
     // @dev Equips an item to the adventurer by removing it from the bag and attaching it to the adventurer. If there's already an item in the slot being equipped, it moves the existing item to the bag.

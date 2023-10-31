@@ -35,6 +35,8 @@ trait IGame<TContractState> {
     fn harvesting( ref self: TContractState,adventurer_id: u256);
     fn composite( ref self: TContractState,adventurer_id: u256,config_id:felt252,times:u16);
     fn eat( ref self: TContractState,adventurer_id: u256);
+    fn unequip(ref self: TContractState, adventurer_id: u256, items: Array<u8>);
+
     // --------- view functions ---------
 
     // adventurer details
