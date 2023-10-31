@@ -29,10 +29,10 @@ export default {
       playClickSound();
       await this.drop_items(item.id)
     },
-    getItemName(item){
+    getItemName(item) {
       return ITEMS[item.id]
     },
-    getItemType(item){
+    getItemType(item) {
       return ITEM_TYPES[item.id]
     },
   }
@@ -45,14 +45,28 @@ export default {
   <div class="sideList">
     <div class="list">
       <ul>
+        <li style="">
+          <div class="border">
+            <div class="imgbox"><img src="/src/assets/images/set1.png" alt=""></div>
+            <div class="ri">
+              <div class="title">Roast meat</div>
+              <div class="dec">Type: Meat</div>
+              <div class="lv">
+                <!--                <span>LV1</span><i><em style="width: 40%;"></em></i>-->
+                <span>{{ adventurer.resources.roast_meat }}</span>
+              </div>
+            </div>
+            <a href="#" class="eq" @click="onClickUseItem">USE</a></div>
+          <!--          <a href="#" class="delet"></a>-->
+        </li>
         <li v-for="(item, index) in adventurer.bag" :key="index" v-show="item && item.id!==0">
           <div class="border">
             <div class="imgbox">
-              <img src="images/set1.png" alt="">
+              <img src="@/assets/images/set1.png" alt="">
             </div>
             <div class="ri">
-              <div class="title">{{ getItemName(item)}}</div>
-              <div class="dec">Type: {{ getItemType(item)}}</div>
+              <div class="title">{{ getItemName(item) }}</div>
+              <div class="dec">Type: {{ getItemType(item) }}</div>
               <div class="lv">
                 <span>LV1</span>
                 <i>
@@ -69,19 +83,19 @@ export default {
   </div>
 
 
-<!--  <div id="bag" class="leftInfor">-->
-<!--    <ul>-->
-<!--      <li v-for="(item, index) in adventurer.bag" :key="index" v-show="item && item.id!==0">-->
-<!--        <div>{{ getItemName(item)}}</div>-->
+  <!--  <div id="bag" class="leftInfor">-->
+  <!--    <ul>-->
+  <!--      <li v-for="(item, index) in adventurer.bag" :key="index" v-show="item && item.id!==0">-->
+  <!--        <div>{{ getItemName(item)}}</div>-->
 
-<!--        &lt;!&ndash;        <div class="item">{{ item.name }}</div>&ndash;&gt;-->
-<!--        &lt;!&ndash;        <div class="item">{{ item.count }}</div>&ndash;&gt;-->
-<!--        <button class="item" @click="onClickEquip(item)">Equip</button>-->
-<!--        <button class="item" @click="onClickUseItem(item)">Use</button>-->
-<!--        <button class="item" @click="onClickDropItem(item)">Drop</button>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--  </div>-->
+  <!--        &lt;!&ndash;        <div class="item">{{ item.name }}</div>&ndash;&gt;-->
+  <!--        &lt;!&ndash;        <div class="item">{{ item.count }}</div>&ndash;&gt;-->
+  <!--        <button class="item" @click="onClickEquip(item)">Equip</button>-->
+  <!--        <button class="item" @click="onClickUseItem(item)">Use</button>-->
+  <!--        <button class="item" @click="onClickDropItem(item)">Drop</button>-->
+  <!--      </li>-->
+  <!--    </ul>-->
+  <!--  </div>-->
 
 </template>
 
