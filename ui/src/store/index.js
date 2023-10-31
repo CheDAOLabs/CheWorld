@@ -5,7 +5,7 @@ import {parseEvents} from "../system/parseEvents.js";
 import {Contract, getChecksumAddress, hash, TransactionStatus, uint256} from 'starknet';
 
 
-export const contract_address = "0x05f935f288be3f7064ee22743e793d1a909852364f47afee39064d248380cdbc";
+export const contract_address = "0x041333fda7100a0c5124089958bbc66a6e834b30de8ebf9a78ee4febf7eaaed2";
 import contract_abi from "./abi.json";
 import {ElMessage} from "element-plus";
 import {BEASTS, ITEMS} from "../system/GameData.js";
