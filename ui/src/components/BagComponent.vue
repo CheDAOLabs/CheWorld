@@ -1,5 +1,6 @@
 <script>
 import {mapActions, mapState} from "vuex";
+import {ITEMS} from "../system/GameData.js";
 
 export default {
   name: "BagComponent",
@@ -23,7 +24,10 @@ export default {
     },
     async onClickDropItem(item) {
       await this.drop_items(item.id)
-    }
+    },
+    getItemName(item){
+      return ITEMS[item.id]
+    },
   }
 
 }
@@ -33,8 +37,9 @@ export default {
 
   <div id="bag" class="leftInfor">
     <ul>
-      <li v-for="(item, index) in adventurer.bag" :key="index">
-        <div>{{ index }}</div>
+      <li v-for="(item, index) in adventurer.bag" :key="index" v-show="item && item.id!==0">
+        <div>{{ getItemName(item)}}</div>
+
         <!--        <div class="item">{{ item.name }}</div>-->
         <!--        <div class="item">{{ item.count }}</div>-->
         <button class="item" @click="onClickEquip(item)">Equip</button>
