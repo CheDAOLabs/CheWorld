@@ -601,7 +601,23 @@ export const store = createStore({
 
         },
         async equip(context, items) {
+            const mintAdventurerTx = {
+                contractAddress: contract_address,
+                entrypoint: "equip",
+                calldata: [context.state.adventurer?.id?.toString() ?? "", "0"],
+            };
 
+            const tx = await context.state.account?.execute(mintAdventurerTx);
+
+            const receipt = await context.dispatch('poolReceipt', tx.transaction_hash);
+
+            console.log('receipt', receipt);
+
+            let events = await parseEvents(receipt);
+
+            console.log('events', events);
+
+            context.commit("doEvents", events)
         },
         async drop_items(context, items) {
 

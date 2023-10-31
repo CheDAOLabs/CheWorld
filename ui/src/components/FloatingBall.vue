@@ -21,6 +21,7 @@ export default {
       return maxHealth;
     },
     onClickOpenBag(){
+      console.log("onClickOpenBag");
       this.setShowBagModal(!this.showBagModal);
     }
   }
@@ -38,7 +39,7 @@ export default {
       </div>
     </div>
 
-    <div class="typeItem type2" style="top:150px">
+    <div class="typeItem type2" style="top:150px" @click="onClickOpenBag">
       <!--      <div class="add"></div>-->
       <div class="ov">
         <div class="icon"><img src="@/assets/images/icon2.png" alt=""></div>

@@ -1,11 +1,11 @@
 <template>
 
   <div class="game">
-<!--    <ElButton @click="test">test</ElButton>-->
-<!--    <ElButton @click="onClickAttack">attack</ElButton>-->
-<!--    <ElButton @click="onClickFlee">flee</ElButton>-->
-<!--    <ElButton @click="onClickExplore">explore</ElButton>-->
-<!--    <ElButton @click="onClickUpgrade">upgrade</ElButton>-->
+    <!--    <ElButton @click="test">test</ElButton>-->
+    <!--    <ElButton @click="onClickAttack">attack</ElButton>-->
+    <!--    <ElButton @click="onClickFlee">flee</ElButton>-->
+    <!--    <ElButton @click="onClickExplore">explore</ElButton>-->
+    <!--    <ElButton @click="onClickUpgrade">upgrade</ElButton>-->
 
     <el-dialog
         v-model="dialogVisible"
@@ -61,6 +61,7 @@
     <Crafting v-if="showCrafting"/>
     <RoleInformation v-if="showInformation"/>
     <DiedModal v-if="showDeadModal"/>
+    <BagComponent v-if="showBagModal"/>
   </div>
 </template>
 
@@ -74,10 +75,12 @@ import FloatingBall from "../components/FloatingBall.vue";
 import DiedModal from "../components/DiedModal.vue";
 import {ElNotification} from "element-plus";
 import {DialogKorsk} from "../config/dialog.js";
+import BagComponent from "@/components/BagComponent.vue";
 
 export default {
   name: 'MainPage',
   components: {
+    BagComponent,
     DiedModal,
     FloatingBall,
     AvatarComponent,
@@ -86,7 +89,9 @@ export default {
   mounted() {
 
   },
-  computed: mapState(['wallet_address', "showCrafting", "showInformation", "showDeadModal",'adventurer']),
+  computed: mapState(['wallet_address',
+    "showCrafting", "showInformation", "showDeadModal", 'adventurer', 'showBagModal'
+  ]),
   data() {
     return {
       dialogVisible: false,
@@ -141,9 +146,9 @@ export default {
       await this.loadResources();
       this.setCurrPage('world');
     },
-    async showDialog(){
+    async showDialog() {
       const randomIndex = Math.floor(Math.random() * DialogKorsk.length);
-      const msg= DialogKorsk[randomIndex].sentence;
+      const msg = DialogKorsk[randomIndex].sentence;
 
       ElNotification({
         title: 'Korsk',
