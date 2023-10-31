@@ -7,6 +7,7 @@
     <!--    <ElButton @click="onClickExplore">explore</ElButton>-->
     <!--    <ElButton @click="onClickUpgrade">upgrade</ElButton>-->
 
+    <SnowMask/>
     <el-dialog
         v-model="dialogVisible"
         title="Tips"
@@ -77,10 +78,12 @@ import {ElNotification} from "element-plus";
 import {DialogKorsk} from "../config/dialog.js";
 import BagComponent from "@/components/BagComponent.vue";
 import {playClickSound} from "@/utils/index.js";
+import SnowMask from "@/components/SnowMask.vue";
 
 export default {
   name: 'MainPage',
   components: {
+    SnowMask,
     BagComponent,
     DiedModal,
     FloatingBall,

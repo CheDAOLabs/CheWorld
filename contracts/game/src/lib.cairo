@@ -150,12 +150,15 @@ mod Game {
 
         fn eat(ref self: ContractState,adventurer_id: u256){
             let (mut adventurer, stat_boosts) = _unpack_adventurer_with_stat_boosts(
-                @self, adventurer_id
+                @self, adventurer_idr
             );
             _assert_ownership(@self, adventurer_id);
             _assert_not_dead(adventurer);
 
-            _assert_not_buying_excess_health(adventurer, 10);
+            let health = 10;
+            _assert_not_buying_excess_health(adventurer, health);
+
+            adventurer.increase_health(health);
 
             let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
             assert(res.roast_meat>0,'has no roasts');

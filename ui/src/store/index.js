@@ -5,7 +5,7 @@ import {parseEvents} from "../system/parseEvents.js";
 import {Contract, getChecksumAddress, hash, TransactionStatus, uint256} from 'starknet';
 
 
-export const contract_address = "0x041333fda7100a0c5124089958bbc66a6e834b30de8ebf9a78ee4febf7eaaed2";
+export const contract_address = "0x07466a70546607655d9f5d0b10e490e0a5a7e6314ac22b29a7fac8b3778e466b";
 import contract_abi from "./abi.json";
 import {ElMessage} from "element-plus";
 import {BEASTS, ITEMS} from "../system/GameData.js";
@@ -360,7 +360,7 @@ export const store = createStore({
                         state.adventurer.resources = event.data.data.res
                         break;
                     case "Eat":
-                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerStateWithBag.adventurerState);
+                        state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerState);
                         state.adventurer.resources = event.data.data.res
                         break;
                     default:

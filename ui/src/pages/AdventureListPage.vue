@@ -3,6 +3,8 @@
   <!--  <ElButton @click="spawn">spawn</ElButton>-->
   <!--    <ElButton @click="test">test</ElButton>-->
   <div class="creatMain">
+    <SnowMask/>
+
     <!--    <a href="#" class="Skip">Skip</a>-->
     <div class="contBase  itemNase " v-if="step===1" @click="nextStep">
       <div class="title">A mysterious voice:</div>
@@ -139,10 +141,12 @@ import {getRandomFloatIn, getRandomNumberIn, playClickSound, roundFloatToInt} fr
 import $ from 'jquery';
 import {stat_desc} from "../config/stat.js";
 import {ElMessage} from "element-plus";
+import SnowMask from "@/components/SnowMask.vue";
 
 export default {
   name: 'AdventureListPage',
   components: {
+    SnowMask,
     Crafting
   },
   mounted() {
