@@ -535,3 +535,4 @@ export const BEASTS = {
     74: "Orc",
     75: "Skeleton",
 };
+

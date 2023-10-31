@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       page: 1,
-      limit: 10,
+      limit: 11,
     }
   },
   methods: {
@@ -60,15 +60,37 @@ export default {
         empty: empty
       };
     },
-    onClick(){
+    onClick() {
       playClickSound();
-    }
+    },
+    onClickLeft() {
+      if (this.page <= 1) {
+        return;
+      }
+      playClickSound();
+      this.page--;
+    },
+    onClickRight() {
+      if (this.page >= 2) {
+        return;
+      }
+      playClickSound();
+      this.page++;
+    },
+
   }
 }
 </script>
 
 <template>
   <div class="controls">
+    <div class="totals">
+      <div class="pages">
+        <i class="left" @click="onClickLeft"></i>
+        <div class="total">Item slot page {{ page }}/2</div>
+        <i class="right" @click="onClickRight"></i>
+      </div>
+    </div>
     <ul>
       <li v-for="item in getRenderData().res " :key="item" @click="onClick">
         <img src="@/assets/images/set1.png" alt="">
