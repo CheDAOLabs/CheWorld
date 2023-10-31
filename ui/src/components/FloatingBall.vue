@@ -1,6 +1,6 @@
 <script>
 
-import {mapState} from "vuex";
+import {mapMutations, mapState} from "vuex";
 
 export default {
   name: 'FloatingBall',
@@ -9,15 +9,19 @@ export default {
   mounted() {
 
   },
-  computed: mapState(['wallet_address', "adventurer",]),
+  computed: mapState(['wallet_address', "adventurer",'showBagModal']),
   data() {
     return {}
   },
   methods: {
+    ...mapMutations(['setShowBagModal']),
     getMaxHealth() {
       const vitality = this.adventurer.vitality ?? 0;
       const maxHealth = Math.min(100 + vitality * 10, 720);
       return maxHealth;
+    },
+    onClickOpenBag(){
+      this.setShowBagModal(!this.showBagModal);
     }
   }
 }

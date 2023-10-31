@@ -1,5 +1,5 @@
 <script>
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "BagComponent",
@@ -15,14 +15,27 @@ export default {
    }
   },
   methods: {
-
+    ...mapActions(['equip','drop_items','use_item']),
+    async onClickEquip(){
+      //todo await this.equip()
+    },
+    async onClickUseItem(){
+      //todo await this.use_item()
+    },
+    async drop_item(){
+      //todo await this.drop_items()
+    }
   }
 
 }
 </script>
 
 <template>
-  <div></div>
+  <div>
+    <ul>
+      <li></li>
+    </ul>
+  </div>
 </template>
 
 <style scoped>
