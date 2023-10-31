@@ -47,8 +47,8 @@
           <div class="dot"></div>
         </div>
 
-        <div v-for="(res, index) in ResConfig" :key="index">
-          <div :class="'block block1 ui'+getColorByType(res.type)" @click="onClickHarvesting"
+        <div v-for="(res, index) in ResConfig" :key="index" class="">
+          <div :class="'idle-animation block block1 ui'+getColorByType(res.type)" @click="onClickHarvesting"
                :style="{'left':res.x+'%','top':res.y+'%'}">
             <div class="text">
               {{ res.name }} <br>{{ getCanHarvestNum(ResConfig.id) }}/ {{ res.maxnum }}
