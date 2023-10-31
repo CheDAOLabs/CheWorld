@@ -16,7 +16,7 @@ export default {
   methods: {
     ...mapActions(['equip', 'drop_items', 'use_item']),
     async onClickEquip(item) {
-       await this.equip([0])
+       await this.equip(41)
     },
     async onClickUseItem() {
       //todo await this.use_item()
@@ -30,18 +30,20 @@ export default {
 </script>
 
 <template>
-  <div id="bag">
+
+  <div id="bag" class="leftInfor">
     <ul>
       <li v-for="(item, index) in adventurer.bag" :key="index">
         <div>{{ index }}</div>
         <!--        <div class="item">{{ item.name }}</div>-->
         <!--        <div class="item">{{ item.count }}</div>-->
-        <div class="item" @click="onClickEquip">Equip</div>
-        <div class="item" @click="onClickUseItem">Use</div>
-        <div class="item" @click="drop_item">Drop</div>
+        <button class="item" @click="onClickEquip">Equip</button>
+        <button class="item" @click="onClickUseItem">Use</button>
+        <button class="item" @click="drop_item">Drop</button>
       </li>
     </ul>
   </div>
+
 </template>
 
 <style scoped>

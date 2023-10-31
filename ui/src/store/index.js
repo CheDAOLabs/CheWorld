@@ -1,6 +1,6 @@
 import {createStore} from "vuex";
 import {connect} from "@argent/get-starknet";
-import {formatAdventurerState, getCurrentTime, getRandomNumber, stringToFelt} from "../utils/index.js";
+import {formatAdventurerState, getCurrentTime, getKeyFromValue, getRandomNumber, stringToFelt} from "../utils/index.js";
 import {parseEvents} from "../system/parseEvents.js";
 import {Contract, getChecksumAddress, hash, TransactionStatus, uint256} from 'starknet';
 
@@ -8,7 +8,7 @@ import {Contract, getChecksumAddress, hash, TransactionStatus, uint256} from 'st
 export const contract_address = "0x0076b40109c87ba89f52d6700936be9d56ccdd4c334f0120de8a557a8ea0d67d";
 import contract_abi from "./abi.json";
 import {ElMessage} from "element-plus";
-import {BEASTS} from "../system/GameData.js";
+import {BEASTS, ITEMS} from "../system/GameData.js";
 // export const lordsContractAddress :string
 export const store = createStore({
     state: {
@@ -23,7 +23,7 @@ export const store = createStore({
         showBeastInfoModal: false,
         showBattleMask: false,
         showBattleVictory: false,
-        showBagModal:false,
+        showBagModal: false,
         craftingIndex: 1,
         craftingNumber: 1,
         currPage: 'login',
@@ -600,11 +600,25 @@ export const store = createStore({
             context.commit("doEvents", events)
 
         },
-        async equip(context, items) {
+        async equip(context, item) {
+
+            const newEquipItems = [
+                // ...equipItems,
+                // getKeyFromValue(ITEMS, item) ?? "",
+                item.toString(),
+            ];
+            const calldata = [
+                context.state.adventurer?.id?.toString() ?? "", "0",
+                newEquipItems.length.toString(),
+                ...newEquipItems,
+            ];
+            console.log("equip", item, calldata)
+
             const mintAdventurerTx = {
                 contractAddress: contract_address,
                 entrypoint: "equip",
-                calldata: [context.state.adventurer?.id?.toString() ?? "", "0"],
+                calldata: calldata,
+                metadata: `Equipping ${item}!`,
             };
 
             const tx = await context.state.account?.execute(mintAdventurerTx);
