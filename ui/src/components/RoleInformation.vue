@@ -1,5 +1,5 @@
 <template>
-  <div class="alertmodel" >
+  <div class="alertmodel modal_animation" style="" >
     <div class="center center4"  v-loading="loading" >
       <div class="close" @click="onClockClose"></div>
       <div class="titlero">
@@ -250,5 +250,9 @@ export default {
 </script>
 
 <style>
-
+.modal_animation{
+  transform:  scale(1);
+  opacity: 1;
+  transition: all 0.4s;
+}
 </style>

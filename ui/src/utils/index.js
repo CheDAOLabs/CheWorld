@@ -138,3 +138,14 @@ export function formatAdventurerState(adventurer, adventurerState) {
 
     return adventurer;
 }
+
+export const playClickSound = () => {
+    var sound = new Audio('music/ui/21 - Track 21.mp3'); // 替换为您的音效文件路径
+    sound.play();
+    // function playSound() {
+    //     sound.play();
+    // }
+    //
+    // var button = document.querySelector('button');
+    // button.addEventListener('click', playSound);
+}

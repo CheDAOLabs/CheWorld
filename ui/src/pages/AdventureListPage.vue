@@ -135,7 +135,7 @@
 import Crafting from "../components/Crafting.vue";
 import {mapActions, mapMutations, mapState} from "vuex";
 import {getQuesting} from "../config/questing.js";
-import {getRandomFloatIn, getRandomNumberIn, roundFloatToInt} from "../utils/index.js";
+import {getRandomFloatIn, getRandomNumberIn, playClickSound, roundFloatToInt} from "../utils/index.js";
 import $ from 'jquery';
 import {stat_desc} from "../config/stat.js";
 import {ElMessage} from "element-plus";
@@ -201,6 +201,7 @@ export default {
     },
 
     async enter() {
+      playClickSound();
       if (this.loading) {
         return;
       }
@@ -231,7 +232,7 @@ export default {
       }
     },
     nextStep() {
-
+      playClickSound();
       this.step++;
       if (this.step === 5) {
         $('.s1 ').hover(function () {
@@ -243,6 +244,7 @@ export default {
       }
     },
     awser(value) {
+      playClickSound();
       let a = this.getCurrQuesting().awnser[value];
       switch (a.target) {
         case 'strength':
@@ -313,6 +315,7 @@ export default {
     },
 
     async onClickHead(index) {
+      playClickSound();
       this.tabIndex = index;
       if (index >= this.adventurers.length) {
         this.content = null

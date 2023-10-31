@@ -1,5 +1,6 @@
 <script >
 import {mapActions, mapMutations, mapState} from "vuex";
+import {playClickSound} from "@/utils/index.js";
 
 export default {
   name: 'AvatarComponent',
@@ -12,9 +13,11 @@ export default {
     ...mapMutations(['setShowInformation', 'setCurrPage']),
 
     openInformation() {
+      playClickSound();
       this.setShowInformation(true)
     },
     onClickWallet() {
+      playClickSound();
       this.setCurrPage('login');
     },
   }

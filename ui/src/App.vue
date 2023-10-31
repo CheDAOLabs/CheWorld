@@ -4,10 +4,15 @@
   <!--  </div>-->
   <div>
 
-    <LoginPage v-if="currPage==='login'"/>
-    <MainPage  v-if="currPage==='main'"/>
-    <AdventureListPage  v-if="currPage==='adventure_list'"/>
-    <WorldPage  v-if="currPage==='world'"/>
+    <div @click="playAudio" style="position: absolute;width: 100%;height: 100%;z-index: 100;">
+
+      <LoginPage v-if="currPage==='login'"/>
+      <MainPage v-if="currPage==='main'"/>
+      <AdventureListPage v-if="currPage==='adventure_list'"/>
+      <WorldPage v-if="currPage==='world'"/>
+
+      <audio ref="audioPlayer" src="music/ui/game_over.mp3" autoplay></audio>
+    </div>
   </div>
 </template>
 
@@ -18,15 +23,30 @@ import MainPage from './pages/MainPage.vue'
 import AdventureListPage from './pages/AdventureListPage.vue'
 import WorldPage from './pages/WorldPage.vue'
 import {mapState} from "vuex";
+import {playClickSound} from "@/utils/index.js";
 
 export default {
   name: 'App',
-  components: {LoginPage, MainPage, AdventureListPage,WorldPage},
+  components: {LoginPage, MainPage, AdventureListPage, WorldPage},
   mounted() {
-
+    // this.playAudio()
   },
   computed: mapState(['currPage']),
-
+  data() {
+    return {
+      bgm: false,
+    }
+  },
+  methods: {
+    playAudio() {
+      if (this.bgm) {
+        return;
+      }
+      this.bgm = true;
+      playClickSound();
+      this.$refs.audioPlayer.play();
+    }
+  }
 }
 </script>
 

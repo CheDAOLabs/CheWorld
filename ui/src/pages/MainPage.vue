@@ -26,7 +26,7 @@
     </el-dialog>
 
 
-    <div class="people people1" @click="setShowInformation(true)">
+    <div class="people people1" @click="onClickSelf">
       <img src="@/assets/images/people.png" alt="">
     </div>
 
@@ -59,7 +59,7 @@
     <FloatingBall/>
     <ShortcutBar/>
     <Crafting v-if="showCrafting"/>
-    <RoleInformation v-if="showInformation"/>
+    <RoleInformation :style="[{ transform: showInformation ? 'scale(1)' : 'scale(0)' }]"/>
     <DiedModal v-if="showDeadModal"/>
     <BagComponent v-if="showBagModal"/>
   </div>
@@ -76,6 +76,7 @@ import DiedModal from "../components/DiedModal.vue";
 import {ElNotification} from "element-plus";
 import {DialogKorsk} from "../config/dialog.js";
 import BagComponent from "@/components/BagComponent.vue";
+import {playClickSound} from "@/utils/index.js";
 
 export default {
   name: 'MainPage',
@@ -102,6 +103,7 @@ export default {
     ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade', 'loadResources']),
     ...mapMutations(['setShowCrafting', "setShowInformation", 'setCurrPage']),
     handleClose(done) {
+      playClickSound();
       this.dialogVisible = false
     },
     async test() {
@@ -110,18 +112,23 @@ export default {
       // this.setCurrPage('main')
     },
     async onClickGetReceipt() {
+      playClickSound();
       await this.getReceipt(this.txid);
     },
     async onClickAttack() {
+      playClickSound();
       await this.attack(false, null);
     },
     async onClickExplore() {
+      playClickSound();
       await this.explore(false);
     },
     async onClickFlee() {
+      playClickSound();
       await this.flee(false, null);
     },
     async onClickUpgrade() {
+      playClickSound();
       const currenUpgrades = {
         Strength: 1,
         Dexterity: 0,
@@ -140,13 +147,16 @@ export default {
       });
     },
     openCrafting() {
+      playClickSound();
       this.setShowCrafting(true);
     },
     async onClickEnterWorld() {
+      playClickSound();
       await this.loadResources();
       this.setCurrPage('world');
     },
     async showDialog() {
+      playClickSound();
       const randomIndex = Math.floor(Math.random() * DialogKorsk.length);
       const msg = DialogKorsk[randomIndex].sentence;
 
@@ -154,6 +164,10 @@ export default {
         title: 'Korsk',
         message: msg
       })
+    },
+    async onClickSelf(){
+      playClickSound();
+      this.setShowInformation(true);
     }
   }
 }
