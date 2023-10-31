@@ -14,12 +14,12 @@ export default {
     console.log(this.adventurer.bag)
   },
   methods: {
-    ...mapActions(['equip', 'drop_items', 'use_item']),
+    ...mapActions(['equip', 'drop_items', 'eat']),
     async onClickEquip(item) {
       await this.equip(item.id)
     },
     async onClickUseItem(item) {
-      await this.use_item(item.id)
+      await this.eat()
     },
     async onClickDropItem(item) {
       await this.drop_items(item.id)

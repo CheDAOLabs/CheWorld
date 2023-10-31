@@ -25,7 +25,7 @@ Not declaring class as it's already declared. Class hash:
 export LORDS_ADDRESS=0;
 export DAO_ADDRESS=0;
 export ARG=0x000f4dbfe5d15792aa91025e42ee1d74c22bdeb1eef0b9bc19a37216377290c1;
-export CLASS_HASH=0x06d6a38a2ec7ad09d7b4e5c72ea6710215e3d099628b3e2eec0c58dea4677d32;
+export CLASS_HASH=0x022a83181a3038fa3120d25efb206cdcc3997bec3ba92a98f99ab2e2bf283e4f;
 starkli deploy $CLASS_HASH $ARG  
 
 ```

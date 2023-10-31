@@ -118,6 +118,7 @@ mod Game {
         IdleDeathPenalty: IdleDeathPenalty,
         RewardDistribution: RewardDistribution,
         Composited: Composited,
+        Eat: Eat,
     }
 
     #[constructor]
@@ -146,6 +147,37 @@ mod Game {
 
     #[external(v0)]
     impl Game of IGame<ContractState> {
+
+        fn eat(ref self: ContractState,adventurer_id: u256){
+            let (mut adventurer, stat_boosts) = _unpack_adventurer_with_stat_boosts(
+                @self, adventurer_id
+            );
+            _assert_ownership(@self, adventurer_id);
+            _assert_not_dead(adventurer);
+
+            _assert_not_buying_excess_health(adventurer, 10);
+
+            let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
+            assert(res.roast_meat>0,'has no roasts');
+            res.roast_meat = res.roast_meat - 1;
+
+            _pack_adventurer_res(ref self,adventurer_id,res);
+
+            _pack_adventurer_remove_stat_boost(
+                ref self, ref adventurer, adventurer_id, stat_boosts
+            );
+
+            let adventurer_state = AdventurerState {
+                owner: _owner_of(@self, adventurer_id), adventurer_id, adventurer
+            };
+
+            self.emit(Eat
+                {
+                    adventurer_state,
+                    res
+                }
+            );
+        }
 
         fn composite(ref self: ContractState,adventurer_id: u256,config_id:felt252,times:u16){
             if(config_id==1){
@@ -2841,6 +2873,12 @@ mod Game {
         res: AdventurerRes,
         reward: AdventurerRes,
         times: u16,
+    }
+
+    #[derive(Drop, starknet::Event)]
+    struct Eat {
+        adventurer_state: AdventurerState,
+        res: AdventurerRes,
     }
 
     #[derive(Drop, starknet::Event)]

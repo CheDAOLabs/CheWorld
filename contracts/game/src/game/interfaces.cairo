@@ -34,8 +34,7 @@ trait IGame<TContractState> {
     fn rotate_global_entropy(ref self: TContractState);
     fn harvesting( ref self: TContractState,adventurer_id: u256);
     fn composite( ref self: TContractState,adventurer_id: u256,config_id:felt252,times:u16);
-
-
+    fn eat( ref self: TContractState,adventurer_id: u256);
     // --------- view functions ---------
 
     // adventurer details

@@ -744,6 +744,20 @@ export async function parseEvents(receipt) {
                     }
                 });
                 break;
+            case "Eat":
+                console.log("Eat", raw.data);
+                const EatData = {
+                    adventurerState: parseAdventurerState(raw.data.slice(0, 39)),
+                    res: parseAdventurerRes(raw.data.slice(40, 62)),
+                };
+                events.push({
+                    name: eventName, data: {
+                        data: EatData,
+                        event_name: eventName,
+                        transaction_hash: receipt.transaction_hash
+                    }
+                });
+                break;
             default:
                 console.error("unknown event: " + eventName, raw.data);
                 break;

@@ -28,6 +28,7 @@ export const SELECTOR_KEYS ={
     IdleDeathPenalty: hash.getSelectorFromName("IdleDeathPenalty"),
     ResUpdate: hash.getSelectorFromName("ResUpdate"),
     Composited: hash.getSelectorFromName("Composited"),
+    Eat: hash.getSelectorFromName("Eat"),
 }
 
 
