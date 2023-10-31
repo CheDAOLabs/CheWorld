@@ -11,10 +11,15 @@ export default {
   },
   computed: mapState(['wallet_address', "adventurer",]),
   data() {
-    return {}
+    return {
+      page: 1,
+      limit: 10,
+    }
   },
   methods: {
     getRenderData() {
+      let page = this.page;
+      let limit = this.limit;
       let temp = {
         icon: "@/assets/images/set1.png",
         num: 0,
@@ -29,7 +34,7 @@ export default {
       Object.keys(resources).map((key) => {
         const num = resources[key];
         let item = JSON.parse(JSON.stringify(temp));
-        if (num > 0  && key!=="last_timestamp") {
+        if (num > 0 && key !== "last_timestamp") {
           item.name = getResConfigByKey(key).name;
           item.num = num;
           item.desc = getResConfigByKey(key).inform;
@@ -38,13 +43,19 @@ export default {
         }
       });
 
+
+      const startIndex = (page - 1) * limit;
+      const endIndex = startIndex + limit;
+      const paginatedRes = res.slice(startIndex, endIndex);
+
       let empty = [];
-      for (let i = res.length; i < 11; i++) {
+      for (let i = res.length; i < limit; i++) {
         empty.push(i)
       }
 
       return {
-        res: res,
+        page: page,
+        res: paginatedRes,
         empty: empty
       };
     }
@@ -78,7 +89,7 @@ export default {
           </div>
         </div>
       </li>
-      <li v-for="i in getRenderData().empty " :key="i"></li>
+      <!--      <li v-for="i in getRenderData().empty " :key="i"></li>-->
     </ul>
   </div>
 </template>
