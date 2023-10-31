@@ -152,7 +152,7 @@ export default {
     },
     async onClickEnterWorld() {
       playClickSound();
-      await this.loadResources();
+      // await this.loadResources();
       this.setCurrPage('world');
     },
     async showDialog() {
