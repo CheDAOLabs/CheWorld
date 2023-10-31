@@ -1,19 +1,24 @@
 <template>
+<!--  <div class="snow">-->
+<!--   -->
+<!--  </div>-->
+
   <!--  <div id="app">-->
   <!--  <RouterView />-->
   <!--  </div>-->
-  <div>
 
-    <div @click="playAudio" style="position: absolute;width: 100%;height: 100%;z-index: 100;">
 
-      <LoginPage v-if="currPage==='login'"/>
-      <MainPage v-if="currPage==='main'"/>
-      <AdventureListPage v-if="currPage==='adventure_list'"/>
-      <WorldPage v-if="adventurer" :class="[currPage==='world'?'slide slide-in':'slide slide-out']"/>
+  <div class="" @click="playAudio" style="position: absolute;width: 100%;height: 100%;">
 
-      <audio ref="audioPlayer" src="music/ui/game_over.mp3" autoplay loop></audio>
-    </div>
+    <LoginPage v-if="currPage==='login'"/>
+    <MainPage v-if="currPage==='main'"/>
+    <AdventureListPage v-if="currPage==='adventure_list'"/>
+    <WorldPage v-if="adventurer" :class="[currPage==='world'?'slide slide-in':'slide slide-out']"/>
+
+    <audio ref="audioPlayer" src="music/ui/game_over.mp3" autoplay loop></audio>
   </div>
+
+
 </template>
 
 <script>
@@ -75,7 +80,7 @@ export default {
   left: 100%;  /* 设置初始位置在右侧屏幕之外 */
   top: 50%;  /* 调整初始位置为您需要的位置 */
   transform: translateY(-50%);
-  transition: left 0.8s ease-in-out; /* 添加过渡效果 */
+  transition: left 0.2s ease-in-out; /* 添加过渡效果 */
 }
 
 .slide-out {
@@ -85,5 +90,9 @@ export default {
 .slide-in {
   left: 0; /* 激活时将位置调整为左侧边缘 */
 }
+
+
+
+
 
 </style>

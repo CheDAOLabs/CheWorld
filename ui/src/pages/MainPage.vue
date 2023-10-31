@@ -26,25 +26,25 @@
     </el-dialog>
 
 
-    <div class="people people1" @click="onClickSelf">
+    <div class="people people1 idle-animation" @click="onClickSelf">
       <img src="@/assets/images/people.png" alt="">
     </div>
 
-    <div class="people people2" @click="showDialog">
+    <div class="people people2 idle-animation" @click="showDialog">
       <div class="infor">
         <div class="name">Korsk</div>
         <div class="pos">Alchemist</div>
       </div>
       <img src="@/assets/images/people2.png" alt="">
     </div>
-    <div class="people people3" @click="openCrafting">
+    <div class="people people3 idle-animation" @click="openCrafting">
       <div class="infor">
         <div class="name">Brando</div>
         <div class="pos">Blacksmith</div>
       </div>
       <img src="@/assets/images/people3.png" alt="">
     </div>
-    <div class="people people4" @click="onClickEnterWorld">
+    <div class="people people4 idle-animation" @click="onClickEnterWorld">
       <div class="infor">
         <div class="name">Elwyn</div>
         <div class="pos">Hunter</div>
@@ -175,5 +175,32 @@ export default {
 
 
 <style scoped>
+@keyframes float {
+  0% {
+    box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+    transform: translatey(0px);
+  }
+  50% {
+    box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+    transform: translatey(-20px);
+  }
+  100% {
+    box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+    transform: translatey(0px);
+  }
+}
 
+.idle-animation {
+  transform: translatey(0px);
+  animation: float 6s ease-in-out infinite;
+  box-shadow: none !important;
+}
+.idle-animation img{
+  //image-rendering: -webkit-optimize-contrast; /* 使用适当的渲染方式 */
+  image-rendering: optimizeQuality;
+  -webkit-backface-visibility: hidden; /* 修复某些浏览器的 3D 渲染问题 */
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0); /* 修复某些浏览器的 GPU 加速问题 */
+  transform: translateZ(0);
+}
 </style>

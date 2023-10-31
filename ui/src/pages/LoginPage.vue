@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div class="login">
+    <div class="login ">
       <div class="imgbox"
-           style="background: url(/images/login.jpg) no-repeat center center;background-size: cover;"></div>
+           style="background: url(/images/login.jpg) no-repeat center center;background-size: cover;z-index: -1">
+      </div>
+      <SnowMask/>
       <div class="center">
         <div class="logo"><img src="@/assets/images/logo.png" alt=""></div>
         <div class="btns">
@@ -22,11 +24,11 @@
 import {mapState, mapActions, mapMutations} from 'vuex'
 import {getAdventure} from "../system/graphql.js";
 import {ElMessage} from "element-plus";
-import {h} from "vue";
+import SnowMask from "@/components/SnowMask.vue";
 
 export default {
   name: 'LoginPage',
-  components: {},
+  components: {SnowMask},
   mounted() {
 
   },
