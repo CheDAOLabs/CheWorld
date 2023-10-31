@@ -103,7 +103,7 @@ $('.alertmodel .close').click(function(){
 
 $('.game.map .leftInfor,.userInfor2>*,.game.map .typeItem').addClass('wow fadeInDown')
 
-$('.game.map .controls ul').addClass('wow fadeInUp2')
+$('.game.map .controls ul,.game.map .controls .totals').addClass('wow fadeInUp2')
 
 
 
