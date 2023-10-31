@@ -59,7 +59,7 @@
     <FloatingBall/>
     <ShortcutBar/>
     <Crafting v-if="showCrafting"/>
-    <RoleInformation :style="[{ transform: showInformation ? 'scale(1)' : 'scale(0)' }]"/>
+    <RoleInformation :class="[showInformation?'show':'hide']"/>
     <DiedModal v-if="showDeadModal"/>
     <BagComponent v-if="showBagModal"/>
   </div>
@@ -165,7 +165,7 @@ export default {
         message: msg
       })
     },
-    async onClickSelf(){
+    async onClickSelf() {
       playClickSound();
       this.setShowInformation(true);
     }

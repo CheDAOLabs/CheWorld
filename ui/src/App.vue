@@ -50,10 +50,17 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
 #app {
   margin: 0;
   padding: 0;
-
+}
+.show{
+  transform: scale(1);
+  background: rgb(0,0,0,0);
+}
+.hide{
+  transform: scale(0);
+  background: rgb(0,0,0,0);
 }
 </style>

@@ -262,6 +262,6 @@ export default {
 .modal_animation{
   transform:  scale(1);
   opacity: 1;
-  transition: all 0.4s;
+  transition: transform 0.2s;
 }
 </style>
