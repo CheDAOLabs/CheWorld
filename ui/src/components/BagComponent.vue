@@ -1,6 +1,6 @@
 <script>
 import {mapActions, mapState} from "vuex";
-import {ITEM_ICONS, ITEM_TYPES, ITEMS} from "../system/GameData.js";
+import {ITEM_ICONS, ITEM_SLOTS, ITEM_TYPES, ITEMS} from "../system/GameData.js";
 import {calculateLevel, calculateProgress, playClickSound} from "@/utils/index.js";
 
 export default {
@@ -38,7 +38,10 @@ export default {
       return ITEM_TYPES[item.id]
     },
     getItemIcon(item){
-      return ITEM_ICONS[this.getItemType(item)]
+      let name = ITEMS[item.id];
+      let slot  = ITEM_SLOTS[name];
+      console.log("slot",slot)
+      return ITEM_ICONS[slot];
     }
   }
 
