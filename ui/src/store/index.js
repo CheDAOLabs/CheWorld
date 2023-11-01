@@ -48,8 +48,8 @@ export const store = createStore({
             state.showBattleMask = false;
             state.showBattleVictory = false;
             state.showBagModal = false;
-            state.craftingIndex= 1;
-            state.craftingNumber= 1;
+            state.craftingIndex = 1;
+            state.craftingNumber = 1;
         },
         setWalletAddress(state, value) {
             state.wallet_address = value;
@@ -86,6 +86,18 @@ export const store = createStore({
         },
         setAdventureRes(state, value) {
             state.adventurer.resources = value;
+        },
+        setAdventurerStats(state, value) {
+            state.adventurer.stats = value
+        },
+        setAdventurerLogs(state, value) {
+            state.adventurer.logs = value
+        },
+        setAdventurerResources(state, value) {
+            state.adventurer.resources = value
+        },
+        setAdventurerBeastSpecs(state, value) {
+            state.adventurer.beastSpecs = value;
         },
         setShowInformation(state, value) {
             state.showInformation = value
@@ -829,6 +841,14 @@ export const store = createStore({
             const res = convertBigIntToNumber(await contract.get_adventurer_res(context.state.adventurer.id));
             console.log("loadResources res", res);
             context.commit('setAdventureRes', res)
+
+            const beastSpecs = convertBigIntToNumber(await contract.get_attacking_beast(context.state.adventurer.id));
+            console.log("beastSpecs", beastSpecs);
+            context.commit("setAdventuresBeastSpecs", beastSpecs);
+
+            const bag = convertBigIntToNumber(await contract.get_bag(context.state.adventurer.id));
+            console.log('bag', bag)
+            context.commit("setAdventureBag", bag);
         },
         async loadAdventurer(context) {
             const contract = new Contract(contract_abi, contract_address, context.state.account);
