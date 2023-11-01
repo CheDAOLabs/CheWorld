@@ -73,6 +73,33 @@ export function key2id(originalString) {
 
 }
 
+export function id2key(id) {
+    const keys = [
+        'egg',
+        'meat',
+        'fish',
+        'soft_skin',
+        'crusty',
+        'berry',
+        'bamboo',
+        'balsa_wood',
+        'fir_wood',
+        'teak',
+        'hemlock',
+        'mahogany',
+        'pine',
+        'coal',
+        'copper',
+        'iron',
+        'silver',
+        'sterling_silver',
+        'graphite',
+        'platinum',
+        'roast_meat'
+    ];
+    return keys[id - 1];
+}
+
 export function getResConfigByByName(name) {
     return ResConfig.filter(res => res.name === name)[0];
 }
