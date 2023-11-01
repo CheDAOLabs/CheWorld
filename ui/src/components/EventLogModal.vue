@@ -22,6 +22,11 @@ export default {
       return new Date(timestamp * 1000)
     },
   },
+  watch: {
+    // adventurer(newValue, oldValue) {
+    //   this.targetTime = newValue.resources.last_timestamp + 600
+    // }
+  },
   data() {
     return {
       countdown: '00:00',

@@ -45,6 +45,9 @@ export const ITEMS_LEVELED_UP = eventKey("ItemsLeveledUp");
 
 export const NEW_HIGH_SCORE = eventKey("NewHighScore");
 export const REWARD_DISTRIBUTION = eventKey("RewardDistribution");
+export const RES_UPDATE = eventKey("ResUpdate");
+export const COMPOSITED = eventKey("Composited");
+export const EAT = eventKey("Eat");
 
 export const parseStats = combineParsers({
   strength: { index: 0, parser: parseU8 },
@@ -331,3 +334,45 @@ export const parseNewHighScore = combineParsers({
   adventurer_state: { index: 0, parser: parseAdventurerState },
   rank: { index: 1, parser: parseU8 },
 });
+
+export const parseAdventurerRes = combineParsers({
+  egg: { index: 0, parser: parseU16 },
+  meat: {index:1, parser: parseU16},
+  fish: {index:2, parser: parseU16},
+  soft_skin: {index:3, parser: parseU16},
+  crusty:{index:4, parser: parseU16},
+  berry: {index:5, parser: parseU16},
+  bamboo: {index:6, parser: parseU16},
+  balsa_wood: {index:7, parser: parseU16},
+  fir_wood: {index:8, parser: parseU16},
+  teak: {index:9, parser: parseU16},
+  hemlock: {index:10, parser: parseU16},
+  mahogany: {index:11, parser: parseU16},
+  pine: {index:12, parser: parseU16},
+  coal: {index:13, parser: parseU16},
+  copper: {index:14, parser: parseU16},
+  iron: {index:15, parser: parseU16},
+  silver: {index:16, parser: parseU16},
+  sterling_silver: {index:17, parser: parseU16},
+  graphite: {index:18, parser: parseU16},
+  platinum: {index:19, parser: parseU16},
+  roast_meat: {index:20, parser: parseU16},
+  last_timestamp: {index:21, parser: parseFelt252},
+});
+export const parseResUpdate = combineParsers({
+  adventurer_res: { index: 0, parser: parseAdventurerRes },
+  changed: { index: 1, parser: parseAdventurerRes },
+});
+
+export const parseComposited = combineParsers({
+  adventurerStateWithBag: { index: 0, parser: parseAdventurerStateWithBag },
+  cost: { index: 1, parser: parseAdventurerRes },
+  res: { index: 2, parser: parseAdventurerRes },
+  reward: { index: 3, parser: parseAdventurerRes },
+  times: { index: 4, parser: parseU16 },
+});
+
+export const parseEat = combineParsers({
+  adventurerState: { index: 0, parser: parseAdventurerState },
+  res: { index: 1, parser: parseAdventurerRes },
+})
