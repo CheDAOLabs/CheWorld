@@ -276,7 +276,7 @@ mod Game {
             res.meat = res.meat + changes.meat;
             res.fish = res.fish + changes.fish;
             res.soft_skin = res.soft_skin + changes.soft_skin;
-            res.preventsy = res.preventsy + changes.preventsy;
+            res.crusty = res.crusty + changes.crusty;
             res.berry = res.berry + changes.berry;
             res.bamboo = res.bamboo + changes.bamboo;
             res.balsa_wood = res.balsa_wood + changes.balsa_wood;
