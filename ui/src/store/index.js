@@ -534,7 +534,10 @@ export const store = createStore({
             const mintAdventurerTx = {
                 contractAddress: contract_address,
                 entrypoint: "flee",
-                calldata: [context.state.adventurer?.id?.toString() ?? "", "0", tillDeath ? "1" : "0"],
+                calldata: [
+                    context.state.adventurer?.id?.toString() ?? "", "0",
+                    "0"//tillDeath ? "1" : "0"
+                ],
             }
 
             const tx = await context.state.account?.execute(mintAdventurerTx);
