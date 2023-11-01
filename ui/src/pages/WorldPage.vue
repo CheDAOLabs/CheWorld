@@ -245,4 +245,8 @@ export default {
 .mapContent .blocks .block {
   transform: scale(1);
 }
+.mapContent .blocks .block .text{
+  width: 120px;
+  left:-13px;
+}
 </style>

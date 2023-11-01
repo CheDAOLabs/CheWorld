@@ -27,10 +27,10 @@ export default {
       <div class="dec2">
         While logging, cut finger <img src="@/assets/images/heart.png" alt=""> <b>-10</b>
       </div>
-      <div class="title2">Attributes</div>
-      <div class="dec2 mb40">
-        Power <span>+99</span> Luck <b>-99</b>
-      </div>
+<!--      <div class="title2">Attributes</div>-->
+<!--      <div class="dec2 mb40">-->
+<!--        Power <span>+99</span> Luck <b>-99</b>-->
+<!--      </div>-->
       <div class="btns">
         <button class="btn2" @click="onClickClose">confirm</button>
       </div>
