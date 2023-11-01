@@ -279,8 +279,16 @@ export default {
       }
     },
     async onClickUnEquip(item) {
+      if(this.loading){
+        return;
+      }
       playClickSound();
-      await this.unequip(item.id)
+      try {
+        this.loading = true;
+        await this.unequip(item.id)
+      }finally {
+        this.loading = false;
+      }
     },
     async reset() {
       playClickSound();
