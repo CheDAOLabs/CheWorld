@@ -7,4 +7,4 @@ RUN python3 -m pip install pycryptodome
 RUN poetry config virtualenvs.create false
 RUN poetry install
 
-docker run -p 8080:8080 122b93a41df5
+docker run --rm -d -p 8080:8080 graphql
