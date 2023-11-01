@@ -42,7 +42,7 @@ export default {
     ...mapMutations(['setAdventures', 'setAdventure', "setCurrPage",'resetState']),
     ...mapActions(['connect_wallet','loadAdventurer']),
     async login_and_enter() {
-      this.reset();
+      this.resetState(false);
       // ElMessage({
       //   message: h('p', null, [
       //     h('span', null, 'Message can be '),
