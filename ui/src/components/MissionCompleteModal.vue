@@ -5,19 +5,19 @@
 
       <div class="icon"><img src="@/assets/images/titleimg1.png" alt=""></div>
       <div class="title2">Emergency</div>
-      <div class="dec2">
-        While logging, cut finger <img src="@/assets/images/heart.png" alt="">    <b>-10</b>
-      </div>
+<!--      <div class="dec2">-->
+<!--        While logging, cut finger <img src="@/assets/images/heart.png" alt="">    <b>-10</b>-->
+<!--      </div>-->
 
       <div class="title2">Resources</div>
       <div class="dec2">
-        high-quality wood <img src="@/assets/images/uz1.png" alt="">    <span>+99</span>
+        high-quality wood <img src="@/assets/images/uz1.png" alt="">    <span>+1</span>
       </div>
 
-      <div class="title2">Attributes</div>
-      <div class="dec2">
-        Power <span>+99</span>  Luck    <b>-99</b>
-      </div>
+<!--      <div class="title2">Attributes</div>-->
+<!--      <div class="dec2">-->
+<!--        Power <span>+99</span>  Luck    <b>-99</b>-->
+<!--      </div>-->
       <div class="btns">
         <button class="btn2" @click="onClick">confirm</button>
       </div>

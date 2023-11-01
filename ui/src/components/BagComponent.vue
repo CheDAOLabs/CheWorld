@@ -10,7 +10,9 @@ export default {
     ...mapState(['adventurer']),
   },
   data() {
-    return {}
+    return {
+      loading: false
+    }
   },
   mounted() {
     console.log(this.adventurer.bag)
@@ -20,16 +22,40 @@ export default {
     calculateLevel,
     ...mapActions(['equip', 'drop_items', 'eat']),
     async onClickEquip(item) {
+      if (this.loading) {
+        return;
+      }
       playClickSound();
-      await this.equip(item.id)
+      try {
+        this.loading = true;
+        await this.equip(item.id)
+      } finally {
+        this.loading = false;
+      }
     },
     async onClickUseItem(item) {
+      if (this.loading) {
+        return;
+      }
       playClickSound();
-      await this.eat()
+      try {
+        this.loading = true;
+        await this.eat()
+      } finally {
+        this.loading = false;
+      }
     },
     async onClickDropItem(item) {
+      if (this.loading) {
+        return;
+      }
       playClickSound();
-      await this.drop_items(item.id)
+      try {
+        this.loading = true;
+        await this.eat()
+      } finally {
+        this.loading = false;
+      }
     },
     getItemName(item) {
       return ITEMS[item.id]
@@ -37,10 +63,10 @@ export default {
     getItemType(item) {
       return ITEM_TYPES[item.id]
     },
-    getItemIcon(item){
+    getItemIcon(item) {
       let name = ITEMS[item.id];
-      let slot  = ITEM_SLOTS[name];
-      console.log("slot",slot)
+      let slot = ITEM_SLOTS[name];
+      console.log("slot", slot)
       return ITEM_ICONS[slot];
     }
   }
@@ -50,12 +76,12 @@ export default {
 
 <template>
 
-  <div class="sideList">
+  <div class="sideList" v-loading="loading">
     <div class="list">
       <ul>
         <li style="">
           <div class="border">
-            <div class="imgbox"><img src="/src/assets/images/set1.png" alt=""></div>
+            <div class="imgbox"><img src="@/assets/images/set1.png" alt=""></div>
             <div class="ri">
               <div class="title">Roast meat</div>
               <div class="dec">Type: Meat</div>
@@ -76,7 +102,7 @@ export default {
               <div class="title">{{ getItemName(item) }}</div>
               <div class="dec">Type: {{ getItemType(item) }}</div>
               <div class="lv">
-                <span>LV{{calculateLevel(item.xp)}}</span>
+                <span>LV{{ calculateLevel(item.xp) }}</span>
                 <i>
                   <em :style="'width:'+calculateProgress(item.xp)+'%'"></em>
                 </i>
