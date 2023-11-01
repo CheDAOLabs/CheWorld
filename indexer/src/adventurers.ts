@@ -335,33 +335,30 @@ export default function transform({ header, events }: Block) {
           }),
         ];
       }
-      case RES_UPDATE:
-        const { value } = parseResUpdate(event.data, 0);
-        console.log("RES_UPDATE", "->", "ADVENTURER UPDATES");
-        return [
-          // updateAdventurerRes({
-          //   adventurerRes : value.adventurer_res
-          // }),
-        ];
-        break;
-      case COMPOSITED:
-        const { value } = parseComposited(event.data, 0);
-        console.log("COMPOSITED", "->", "ADVENTURER UPDATES");
-        return [
-          // updateAdventurerRes({
-          //   adventurerRes : value.res
-          // }),
-        ];
-        break;
-      case EAT:
-        const { value } = parseEat(event.data, 0);
-        console.log("EAT", "->", "ADVENTURER UPDATES");
-        return [
-          // updateAdventurerRes({
-          //   adventurerRes : value.adventurer_res
-          // }),
-        ];
-        break;
+      // case RES_UPDATE:
+      //   const { value } = parseResUpdate(event.data, 0);
+      //   console.log("RES_UPDATE", "->", "ADVENTURER UPDATES");
+      //   return [
+      //     // updateAdventurerRes({
+      //     //   adventurerRes : value.adventurer_res
+      //     // }),
+      //   ];
+      // case COMPOSITED:
+      //   const { value } = parseComposited(event.data, 0);
+      //   console.log("COMPOSITED", "->", "ADVENTURER UPDATES");
+      //   return [
+      //     // updateAdventurerRes({
+      //     //   adventurerRes : value.res
+      //     // }),
+      //   ];
+      // case EAT:
+      //   const { value } = parseEat(event.data, 0);
+      //   console.log("EAT", "->", "ADVENTURER UPDATES");
+      //   return [
+      //     // updateAdventurerRes({
+      //     //   adventurerRes : value.adventurer_res
+      //     // }),
+      //   ];
       default: {
         console.warn("Unknown event", event.keys[0]);
         return [];
