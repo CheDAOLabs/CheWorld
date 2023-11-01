@@ -1,5 +1,5 @@
 <script>
-import {mapActions, mapState} from "vuex";
+import {mapActions, mapMutations, mapState} from "vuex";
 import {ITEM_ICONS, ITEM_SLOTS, ITEM_TYPES, ITEMS} from "../system/GameData.js";
 import {calculateLevel, calculateProgress, playClickSound} from "@/utils/index.js";
 
@@ -21,6 +21,7 @@ export default {
     calculateProgress,
     calculateLevel,
     ...mapActions(['equip', 'drop_items', 'eat']),
+    ...mapMutations(['setShowBagModal']),
     async onClickEquip(item) {
       if (this.loading) {
         return;
@@ -68,6 +69,9 @@ export default {
       let slot = ITEM_SLOTS[name];
       console.log("slot", slot)
       return ITEM_ICONS[slot];
+    },
+    onClickClose(){
+      this.setShowBagModal(false);
     }
   }
 
@@ -78,6 +82,8 @@ export default {
 
   <div class="sideList">
     <div class="list"  v-loading="loading">
+      <div class="close" @click="onClickClose"></div>
+
       <ul>
         <li style="">
           <div class="border">
@@ -134,5 +140,14 @@ export default {
 </template>
 
 <style scoped>
-
+.close{
+  cursor: pointer;
+  width: 52px;
+  height: 52px;
+  position: absolute;
+  right: -13px;
+  top: -1px;
+  background: url('@/assets/images/close.png') no-repeat center center;
+  background-size: 100%;
+}
 </style>
