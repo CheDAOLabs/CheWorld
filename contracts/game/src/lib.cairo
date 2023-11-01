@@ -159,6 +159,8 @@ mod Game {
             _assert_not_buying_excess_health(adventurer, health);
 
             adventurer.increase_health(health);
+            adventurer.set_last_action(starknet::get_block_info().unbox().block_number);
+
 
             let mut res: AdventurerRes = _adventurer_res_unpacked(@self, adventurer_id);
             assert(res.roast_meat>0,'has no roasts');
