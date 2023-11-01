@@ -989,6 +989,25 @@ mod Game {
         fn owner_of(self: @ContractState, adventurer_id: u256) -> ContractAddress {
             _owner_of(self, adventurer_id)
         }
+        fn get_total_adventurers(self: @ContractState) -> u256 {
+            self._counter.read()
+        }
+        fn get_adventurers(self: @ContractState,owner:ContractAddress) -> Array<u256> {
+            let mut all_items = ArrayTrait::<u256>::new();
+            let mut left = self._counter.read();
+            loop {
+                if left == 0 {
+                    break;
+                }
+                if self._owner.read(left) == owner {
+                    all_items.append(1);
+                }
+                left = left -1;
+            };
+
+            all_items
+        }
+
         fn next_global_entropy_rotation(self: @ContractState) -> felt252 {
             _next_global_entropy_rotation(self)
         }

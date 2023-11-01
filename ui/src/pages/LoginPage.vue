@@ -56,10 +56,10 @@ export default {
       this.loading = true;
       try {
         await this.connect_wallet();
-        let resp = await getAdventure(this.wallet_address);
-        console.log(resp)
-        this.setAdventures(resp.data.adventurers);
-        this.setAdventure(resp.data.adventurers[0])
+        // let resp = await getAdventure(this.wallet_address);
+        // console.log(resp)
+        // this.setAdventures(resp.data.adventurers);
+        // this.setAdventure(resp.data.adventurers[0])
         this.setCurrPage('adventure_list')
       } finally {
         this.loading = false

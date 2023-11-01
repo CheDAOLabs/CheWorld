@@ -123,4 +123,6 @@ trait IGame<TContractState> {
 
     // checks ----------------------------------------------------
     fn owner_of(self: @TContractState, adventurer_id: u256) -> ContractAddress;
+    fn get_total_adventurers(self: @TContractState) -> u256;
+    fn get_adventurers(self: @TContractState, owner: ContractAddress) -> Array<u256>;
 }
