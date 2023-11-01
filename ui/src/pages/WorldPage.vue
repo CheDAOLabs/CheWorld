@@ -202,8 +202,11 @@ export default {
       const current_timestamp = Math.floor(Date.now() / 1000);
       const last_timestamp = this.adventurer.resources.last_timestamp;
       const count = (current_timestamp - last_timestamp) / 600;
-      let num = count.toFixed(0);
       const config = getResConfigById(id);
+      if(config.refresh==='0'){
+        return 0;
+      }
+      let num = (Number)(count.toFixed(0)) * (Number)(config.refresh);
       if (num >= config.maxnum) {
         num = config.maxnum;
       }
