@@ -259,7 +259,7 @@ export default {
       }
     },
     getItem(i) {
-      if (i === undefined || i.id === 0) {
+      if (i===null || i === undefined || i.id === 0) {
         return {
           name: 'NONE EQUIPPED',
           xp: 0,

@@ -108,7 +108,7 @@
             </div>
           </div>
           <div class="right">
-            <div class="title">{{ content?.name }}</div>
+            <div class="title"># {{ content?.id }} {{ content?.name }}</div>
             <img src="@/assets/images/people.png" class="people" alt="">
             <button class="btn" @click="enter" v-loading="loading" style="margin-top: 20px">Start Adventure</button>
           </div>
@@ -185,7 +185,7 @@ export default {
   },
   methods: {
     roundFloatToInt,
-    ...mapActions(['connect_wallet', 'start', 'getReceipt']),
+    ...mapActions(['connect_wallet', 'start', 'getReceipt','loadResources']),
     ...mapMutations(['setAdventure', 'setCurrPage']),
     getContent(key) {
       if (this.content === null) {
@@ -215,6 +215,7 @@ export default {
           await this.spawn();
         } else {
           this.setAdventure(this.adventurers[this.tabIndex])
+          await this.loadResources();
         }
         this.setCurrPage('main')
       } finally {
@@ -301,7 +302,7 @@ export default {
         startingVitality: roundFloatToInt(this.Vitality),
         startingIntelligence: roundFloatToInt(this.Intelligence),
         startingWisdom: roundFloatToInt(this.Wisdom),
-        startingCharisma:roundFloatToInt( this.Charisma),
+        startingCharisma: roundFloatToInt(this.Charisma),
         // startingStrength: 1,
         // startingDexterity: 1,
         // startingVitality: 1,
@@ -314,7 +315,7 @@ export default {
       });
     },
     getMaxHealth() {
-      const vitality = this.Vitality ?? 0;
+      const vitality = (Number)(this.Vitality.toFixed()) ?? 0;
       const maxHealth = Math.min(100 + vitality * 10, 720);
       return maxHealth;
     },

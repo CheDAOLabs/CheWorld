@@ -64,6 +64,9 @@ export const store = createStore({
         setAdventure(state, value) {
             state.adventurer = value;
         },
+        setAdventureRes(state, value) {
+            state.adventurer.resources = value;
+        },
         setShowInformation(state, value) {
             state.showInformation = value
         },
@@ -803,11 +806,10 @@ export const store = createStore({
         },
         async loadResources(context) {
             const contract = new Contract(contract_abi, contract_address, context.state.account);
-            const resouces = await contract.get_adventurer_res(1);
-            console.log("resouces", resouces);
+            const res = await contract.get_adventurer_res(context.state.adventurer.id);
+            console.log("res", res);
+            context.commit('setAdventureRes',res)
 
-
-            // context.state.adventurer?.resource = resouces;
         }
     }
 })
