@@ -150,7 +150,7 @@ mod Game {
 
         fn eat(ref self: ContractState,adventurer_id: u256){
             let (mut adventurer, stat_boosts) = _unpack_adventurer_with_stat_boosts(
-                @self, adventurer_idr
+                @self, adventurer_id
             );
             _assert_ownership(@self, adventurer_id);
             _assert_not_dead(adventurer);
