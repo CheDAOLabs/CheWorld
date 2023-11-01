@@ -12,7 +12,7 @@ import {parseEvents} from "../system/parseEvents.js";
 import {Contract, getChecksumAddress, hash, shortString, TransactionStatus, uint256} from 'starknet';
 
 
-export const contract_address = "0x06a1da252db16f6e5e914e9bccc37b3d2990be46bf73724198f6bc3df7e16a70";
+export const contract_address = "0x0447840f6ee46a8d1d20451e90ce0692719629bafa26cf63915a9ac4febebfe7";
 import contract_abi from "./abi.json";
 import {ElMessage} from "element-plus";
 import {BEASTS, ITEMS} from "../system/GameData.js";

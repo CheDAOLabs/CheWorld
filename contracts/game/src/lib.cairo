@@ -1000,7 +1000,7 @@ mod Game {
                     break;
                 }
                 if self._owner.read(left) == owner {
-                    all_items.append(1);
+                    all_items.append(left);
                 }
                 left = left -1;
             };
