@@ -38,6 +38,19 @@ export const store = createStore({
         adventurer: null
     },
     mutations: {
+        resetState(state, value) {
+            state.showCrafting = false;
+            state.showInformation = false;
+            state.showMissionCompleted = false;
+            state.showDeadModal = false;
+            state.showLogModal = false;
+            state.showBeastInfoModal = false;
+            state.showBattleMask = false;
+            state.showBattleVictory = false;
+            state.showBagModal = false;
+            state.craftingIndex= 1;
+            state.craftingNumber= 1;
+        },
         setWalletAddress(state, value) {
             state.wallet_address = value;
         },
@@ -826,7 +839,7 @@ export const store = createStore({
             for (let i = 0; i < ids.length; i++) {
                 let adid = ids[i];
                 let ad = convertBigIntToNumber(await contract.get_adventurer(adid));
-                 ad = JSON.parse(JSON.stringify(ad));
+                ad = JSON.parse(JSON.stringify(ad));
                 let ad_meta = await contract.get_adventurer_meta(adid);
                 // let ad_res = await contract.get_adventurer_res(adid);
                 const name = shortString.decodeShortString(ad_meta.name);
@@ -842,8 +855,8 @@ export const store = createStore({
                 ad.wisdom = ad.stats.wisdom;
                 ad.statUpgrades = ad.stat_points_available;
                 // ad.resources = ad_res;
-                ad.bag=[];
-                ad.logs=[];
+                ad.bag = [];
+                ad.logs = [];
 
                 console.log("loadAdventurer ad", ad, ad_meta);
                 ads.push(ad);
