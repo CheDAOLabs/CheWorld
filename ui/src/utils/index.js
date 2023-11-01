@@ -161,3 +161,21 @@ export const calculateProgress = (xp) => {
 
     return ((xp - currentLevelXP) / (nextLevelXP - currentLevelXP)) * 100;
 };
+
+export function convertBigIntToNumber(obj) {
+    // 检查 obj 的类型
+    if (typeof obj === 'bigint') {
+        return Number(obj); // 将 BigInt 转换为 Number
+    } else if (typeof obj !== 'object' || obj === null) {
+        return obj; // 非对象或 null，直接返回
+    }
+
+    // 递归遍历对象的属性
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            obj[key] = convertBigIntToNumber(obj[key]);
+        }
+    }
+
+    return obj;
+}

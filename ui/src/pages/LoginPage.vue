@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     ...mapMutations(['setAdventures', 'setAdventure', "setCurrPage"]),
-    ...mapActions(['connect_wallet']),
+    ...mapActions(['connect_wallet','loadAdventurer']),
     async login_and_enter() {
 
       // ElMessage({
@@ -56,10 +56,12 @@ export default {
       this.loading = true;
       try {
         await this.connect_wallet();
+        let ads = await this.loadAdventurer();
         // let resp = await getAdventure(this.wallet_address);
         // console.log(resp)
-        // this.setAdventures(resp.data.adventurers);
-        // this.setAdventure(resp.data.adventurers[0])
+        console.log("ads",ads)
+        this.setAdventures(ads);
+        this.setAdventure(ads[0])
         this.setCurrPage('adventure_list')
       } finally {
         this.loading = false

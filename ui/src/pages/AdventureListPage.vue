@@ -156,6 +156,7 @@ export default {
       $(this).find('.slide').slideToggle(200)
     })
 
+    console.log("this.adventurers.length ", this.adventurers.length)
     if (this.adventurers.length > 0) {
       this.step = 5;
       this.onClickHead(0)
@@ -185,14 +186,18 @@ export default {
   },
   methods: {
     roundFloatToInt,
-    ...mapActions(['connect_wallet', 'start', 'getReceipt','loadResources']),
+    ...mapActions(['connect_wallet', 'start', 'getReceipt', 'loadResources']),
     ...mapMutations(['setAdventure', 'setCurrPage']),
     getContent(key) {
       if (this.content === null) {
         return 0;
       }
-      return this.content[key];
-
+      let res = this.content[key] || this.content[key.toLowerCase()];
+      console.log("getContent", this.content, key, res);
+      if (res === undefined) {
+        return 0
+      }
+      return res;
     },
     async test() {
       await this.getReceipt('0x122d02675d0e6041b992d6f05e70b58c2911f13a967b9acb2a5fc2f00ac5470');

@@ -1,8 +1,15 @@
 import {createStore} from "vuex";
 import {connect} from "@argent/get-starknet";
-import {formatAdventurerState, getCurrentTime, getKeyFromValue, getRandomNumber, stringToFelt} from "../utils/index.js";
+import {
+    convertBigIntToNumber,
+    formatAdventurerState,
+    getCurrentTime,
+    getKeyFromValue,
+    getRandomNumber,
+    stringToFelt
+} from "../utils/index.js";
 import {parseEvents} from "../system/parseEvents.js";
-import {Contract, getChecksumAddress, hash, TransactionStatus, uint256} from 'starknet';
+import {Contract, getChecksumAddress, hash, shortString, TransactionStatus, uint256} from 'starknet';
 
 
 export const contract_address = "0x06a1da252db16f6e5e914e9bccc37b3d2990be46bf73724198f6bc3df7e16a70";
@@ -289,8 +296,8 @@ export const store = createStore({
                         ElMessage('EquippedItems')
                         state.adventurer = formatAdventurerState(state.adventurer, event.data.data.adventurerStateWithBag.adventurerState);
                         this.commit('setAdventurerBag', event.data.data.adventurerStateWithBag.bag);
-                            // [0].data.data.equippedItems
-                            // [0].data.data.unequippedItems
+                        // [0].data.data.equippedItems
+                        // [0].data.data.unequippedItems
                         break;
                     case "DroppedItems":
                         ElMessage('DroppedItems')
@@ -806,10 +813,46 @@ export const store = createStore({
         },
         async loadResources(context) {
             const contract = new Contract(contract_abi, contract_address, context.state.account);
-            const res = await contract.get_adventurer_res(context.state.adventurer.id);
-            console.log("res", res);
-            context.commit('setAdventureRes',res)
+            const res = convertBigIntToNumber(await contract.get_adventurer_res(context.state.adventurer.id));
+            console.log("loadResources res", res);
+            context.commit('setAdventureRes', res)
+        },
+        async loadAdventurer(context) {
+            const contract = new Contract(contract_abi, contract_address, context.state.account);
+            const adids = await contract.get_adventurers(context.state.wallet_address);
+            const ids = adids.slice(0, 5);
+            console.log("loadAdventurer res", adids);
+            let ads = [];
+            for (let i = 0; i < ids.length; i++) {
+                let adid = ids[i];
+                let ad = convertBigIntToNumber(await contract.get_adventurer(adid));
+                 ad = JSON.parse(JSON.stringify(ad));
+                let ad_meta = await contract.get_adventurer_meta(adid);
+                // let ad_res = await contract.get_adventurer_res(adid);
+                const name = shortString.decodeShortString(ad_meta.name);
 
+
+                ad.id = adid;
+                ad.name = name;
+                ad.charisma = ad.stats.charisma;
+                ad.strength = ad.stats.strength;
+                ad.dexterity = ad.stats.dexterity;
+                ad.vitality = ad.stats.vitality;
+                ad.intelligence = ad.stats.intelligence;
+                ad.wisdom = ad.stats.wisdom;
+                ad.statUpgrades = ad.stat_points_available;
+                // ad.resources = ad_res;
+                ad.bag=[];
+                ad.logs=[];
+
+                console.log("loadAdventurer ad", ad, ad_meta);
+                ads.push(ad);
+            }
+            return ads;
+            // context.commit("setAdventures",ads)
+            // if(ads.length>0){
+            //     context.commit("setAdventure",ads[0])
+            // }
         }
     }
 })
