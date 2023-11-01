@@ -844,11 +844,11 @@ export const store = createStore({
 
             const beastSpecs = convertBigIntToNumber(await contract.get_attacking_beast(context.state.adventurer.id));
             console.log("beastSpecs", beastSpecs);
-            context.commit("setAdventuresBeastSpecs", beastSpecs);
+            context.commit("setAdventurerBeastSpecs", beastSpecs);
 
             const bag = convertBigIntToNumber(await contract.get_bag(context.state.adventurer.id));
             console.log('bag', bag)
-            context.commit("setAdventureBag", bag);
+            context.commit("setAdventurerBag", bag);
         },
         async loadAdventurer(context) {
             const contract = new Contract(contract_abi, contract_address, context.state.account);
