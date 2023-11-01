@@ -517,4 +517,76 @@ export default {
   z-index: -1;
   bottom: 80px;
 }
+
+.slide .if1 {
+
+  display: flex;
+
+  padding-bottom: 10px;
+}
+
+
+.slide .if1 .icn {
+
+  width: 78px;
+
+  height: 78px;
+
+  background: url('@/assets/images/common_item_bg.png') no-repeat center center;
+
+  background-size: 100%;
+
+  position: relative;
+}
+
+.slide .if1 img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -o-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.slide .if1 .ri {
+
+  font-size: 16px;
+
+  font-family: Grandstander;
+
+  font-weight: 500;
+
+  color: #F8EED5;
+
+  line-height: 26px;
+
+  padding-left: 7px;
+}
+
+.slide .if1 .ri b {
+
+}
+
+.slide .if2 {
+
+  font-size: 16px;
+
+  font-family: Grandstander;
+
+  font-weight: 300;
+
+  color: #F8EED5;
+
+  line-height: 24px;
+
+  padding-top: 16px;
+
+  border-top: 1px solid #B5A48F;
+
+  margin: 0px 6px;
+}
+
+
 </style>
