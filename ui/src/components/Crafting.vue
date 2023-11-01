@@ -57,7 +57,7 @@
               <ul>
                 <li v-for="(pair,index) in selected.pairs" :key="index">
                   <img src="@/assets/images/set1.png" alt="">
-                  <div class="num">0/{{ pair.value }}</div>
+                  <div class="num">{{getNumByRes(pair.key)}}/{{ pair.value }}</div>
                   <div class="slide" style="display: block">
                     <div class="if1">
                       <div class="icn"><img src="@/assets/images/set1.png" alt=""></div>
@@ -119,7 +119,7 @@ import {mapActions, mapMutations, mapState} from "vuex";
 import {ElMessage} from "element-plus";
 import {composite_config, item_subtypes} from "@/config/item.js";
 import {ITEM_ICONS, ITEM_SLOTS, ITEM_TIERS, ITEMS} from "@/system/GameData.js";
-import {getResConfigById, getResConfigByKey, ResType} from "@/config/res_conf.js";
+import {getResConfigById, getResConfigByKey, id2key, ResType} from "@/config/res_conf.js";
 import {playClickSound} from "@/utils/index.js";
 
 export default {
@@ -450,6 +450,12 @@ export default {
       playClickSound();
       this.selected = null;
       this.complate = null;
+    },
+    getNumByRes(id){
+      let key = id2key(id);
+      console.log(id,key)
+
+      return this.adventurer.resources[key];
     }
   }
 }
