@@ -1,5 +1,5 @@
 <template>
-  <div class="game map">
+  <div class="game map" v-loading="loading">
 
     <div class="userInfor2">
       <div class="bg">
@@ -152,7 +152,8 @@ export default {
   },
   data() {
     return {
-      ResConfig: getResConfig()
+      ResConfig: getResConfig(),
+      loading: false
     };
   },
   methods: {
@@ -160,6 +161,9 @@ export default {
     ...mapMutations(['setShowMissionCompleted', 'setCurrPage', 'setShowInformation', 'setShowBeastInfoModal']),
     ...mapActions(['connect_wallet', 'getReceipt', 'attack', 'explore', 'flee', 'upgrade', 'harvesting']),
     async onClickHarvesting() {
+      if (this.loading) {
+        return;
+      }
       playClickSound();
 
       const current_timestamp = Math.floor(Date.now() / 1000);
@@ -171,11 +175,18 @@ export default {
         ElMessage.error('Harvesting not available yet');
         return;
       }
-
-      await this.harvesting();
-      this.setShowMissionCompleted(true);
+      try {
+        this.loading = true;
+        await this.harvesting();
+        this.setShowMissionCompleted(true);
+      } finally {
+        this.loading = false;
+      }
     },
     async onClickAttack() {
+      if (this.loading) {
+        return;
+      }
       playClickSound();
       let monster = this.adventurer.beastSpecs;
       if (monster) {
@@ -186,7 +197,12 @@ export default {
           ElMessage.error('Please upgrade your character first')
           this.setShowInformation(true);
         } else {
-          await this.explore(true);
+          try {
+            this.loading = true;
+            await this.explore(true);
+          } finally {
+            this.loading = false;
+          }
         }
       }
 
@@ -203,7 +219,7 @@ export default {
       const last_timestamp = this.adventurer.resources.last_timestamp;
       const count = (current_timestamp - last_timestamp) / 600;
       const config = getResConfigById(id);
-      if(config.refresh==='0'){
+      if (config.refresh === '0') {
         return 0;
       }
       let num = (Number)(count.toFixed(0)) * (Number)(config.refresh);
@@ -211,7 +227,7 @@ export default {
         num = config.maxnum;
       }
       // console.log("getCanHarvestNum",config, id,num,current_timestamp,last_timestamp);
-      console.log('aaa',(Number)(num))
+      console.log('aaa', (Number)(num))
       return (Number)(num);
       // return 999;
     },
@@ -227,7 +243,7 @@ export default {
 
       return all;
     },
-    onClickSelf(){
+    onClickSelf() {
       playClickSound();
       this.setShowInformation(true)
     }
@@ -250,8 +266,9 @@ export default {
 .mapContent .blocks .block {
   transform: scale(1);
 }
-.mapContent .blocks .block .text{
+
+.mapContent .blocks .block .text {
   width: 120px;
-  left:-13px;
+  left: -13px;
 }
 </style>
