@@ -246,15 +246,6 @@ mod Game {
 
             assert(count>0,'time');
 
-            res.egg  = res.egg  + count;
-            res.meat = res.meat + count;
-            res.fish = res.fish + count;
-            res.soft_skin = res.soft_skin + count;
-            res.coal = res.coal + count;
-            res.last_timestamp = timestamp;
-
-            _pack_adventurer_res(ref self,adventurer_id,res);
-
             let changes = AdventurerRes {
                 egg:count,
                 meat:count * 2,
@@ -279,6 +270,33 @@ mod Game {
                 roast_meat:0,
                 last_timestamp:timestamp
             };
+
+
+            res.egg  = res.egg  + change.egg;
+            res.meat = res.meat + change.meat;
+            res.fish = res.fish + change.fish;
+            res.soft_skin = res.soft_skin + change.soft_skin;
+            res.preventsy = res.preventsy + change.preventsy;
+            res.berry = res.berry + change.berry;
+            res.bamboo = res.bamboo + change.bamboo;
+            res.balsa_wood = res.balsa_wood + change.balsa_wood;
+            res.fir_wood = res.fir_wood + change.fir_wood;
+            res.teak = res.teak + change.teak;
+            res.hemlock = res.hemlock + change.hemlock;
+            res.mahogany = res.mahogany + change.mahogany;
+            res.pine = res.pine + change.pine;
+            res.coal = res.coal + change.coal;
+            res.copper = res.copper + change.copper;
+            res.iron = res.iron + change.iron;
+            res.silver = res.silver + change.silver;
+            res.sterling_silver = res.sterling_silver + change.sterling_silver;
+            res.graphite = res.graphite + change.graphite;
+            res.platinum = res.platinum + change.platinum;
+            res.roast_meat = res.roast_meat + change.roast_meat;
+
+            res.last_timestamp = timestamp;
+
+            _pack_adventurer_res(ref self,adventurer_id,res);
 
             self.emit(ResUpdate {
                 adventurer_res:res,
