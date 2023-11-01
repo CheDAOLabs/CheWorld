@@ -366,6 +366,7 @@ export default {
       if (this.loading === true) {
         return;
       }
+      this.addedItems=[];
       try {
         this.loading = true;
         let events = await this.composite({config_id: this.selected.id, times: this.craftingNumber});
