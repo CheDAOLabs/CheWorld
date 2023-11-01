@@ -51,7 +51,7 @@
           <div :class="'idle-animation block block1 ui'+getColorByType(res.type)" @click="onClickHarvesting"
                :style="{'left':res.x+'%','top':res.y+'%'}">
             <div class="text">
-              {{ res.name }} <br>{{ getCanHarvestNum(ResConfig.id) }}/ {{ res.maxnum }}
+              {{ res.name }} <br>{{ getCanHarvestNum(res.id).toString() }} / {{ res.maxnum }}
             </div>
             <div class="icon">
               <img :src="'images/ui'+getColorByType(res.type)+'.png'" alt="">
@@ -211,7 +211,9 @@ export default {
         num = config.maxnum;
       }
       // console.log("getCanHarvestNum",config, id,num,current_timestamp,last_timestamp);
+      console.log('aaa',(Number)(num))
       return (Number)(num);
+      // return 999;
     },
     getTypeCount(type) {
       let configs = getResConfigByType(type);
