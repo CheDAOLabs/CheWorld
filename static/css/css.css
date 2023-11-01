@@ -2307,6 +2307,11 @@ z-index: 3;
     background-size: 100%;
     
 }
+.mapContent .blocks .block.ui5 {
+    background: url(../images/y5.png) no-repeat center center;
+    background-size: 100%;
+    
+}
 .mapContent .blocks .block.block1{
     
 left: 44%;
@@ -2346,6 +2351,10 @@ top: 47%;
 .mapContent .blocks .block.block8{
   left: 40%;
   top: 51%;
+}
+.mapContent .blocks .block.block9{
+  left: 61%;
+  top: 54%;
 }
 .mapContent .blocks .centerPeople{
     

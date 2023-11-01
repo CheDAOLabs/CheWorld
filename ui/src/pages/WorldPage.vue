@@ -37,12 +37,12 @@
       <div class="blocks">
 
 
-        <div class="block block2 ui2" @click="onClickAttack">
+        <div class="block block2 ui5 idle-animation" @click="onClickAttack">
           <div class="text">
-            MonsterName <br> 5
+            Dungeon<br/>Entrance
           </div>
           <div class="icon">
-            <img src="@/assets/images/ui2.png" alt="">
+            <img src="@/assets/images/ui5.png" alt="">
           </div>
           <div class="dot"></div>
         </div>
