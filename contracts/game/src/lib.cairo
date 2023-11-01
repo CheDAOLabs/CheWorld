@@ -272,27 +272,27 @@ mod Game {
             };
 
 
-            res.egg  = res.egg  + change.egg;
-            res.meat = res.meat + change.meat;
-            res.fish = res.fish + change.fish;
-            res.soft_skin = res.soft_skin + change.soft_skin;
-            res.preventsy = res.preventsy + change.preventsy;
-            res.berry = res.berry + change.berry;
-            res.bamboo = res.bamboo + change.bamboo;
-            res.balsa_wood = res.balsa_wood + change.balsa_wood;
-            res.fir_wood = res.fir_wood + change.fir_wood;
-            res.teak = res.teak + change.teak;
-            res.hemlock = res.hemlock + change.hemlock;
-            res.mahogany = res.mahogany + change.mahogany;
-            res.pine = res.pine + change.pine;
-            res.coal = res.coal + change.coal;
-            res.copper = res.copper + change.copper;
-            res.iron = res.iron + change.iron;
-            res.silver = res.silver + change.silver;
-            res.sterling_silver = res.sterling_silver + change.sterling_silver;
-            res.graphite = res.graphite + change.graphite;
-            res.platinum = res.platinum + change.platinum;
-            res.roast_meat = res.roast_meat + change.roast_meat;
+            res.egg  = res.egg  + changes.egg;
+            res.meat = res.meat + changes.meat;
+            res.fish = res.fish + changes.fish;
+            res.soft_skin = res.soft_skin + changes.soft_skin;
+            res.preventsy = res.preventsy + changes.preventsy;
+            res.berry = res.berry + changes.berry;
+            res.bamboo = res.bamboo + changes.bamboo;
+            res.balsa_wood = res.balsa_wood + changes.balsa_wood;
+            res.fir_wood = res.fir_wood + changes.fir_wood;
+            res.teak = res.teak + changes.teak;
+            res.hemlock = res.hemlock + changes.hemlock;
+            res.mahogany = res.mahogany + changes.mahogany;
+            res.pine = res.pine + changes.pine;
+            res.coal = res.coal + changes.coal;
+            res.copper = res.copper + changes.copper;
+            res.iron = res.iron + changes.iron;
+            res.silver = res.silver + changes.silver;
+            res.sterling_silver = res.sterling_silver + changes.sterling_silver;
+            res.graphite = res.graphite + changes.graphite;
+            res.platinum = res.platinum + changes.platinum;
+            res.roast_meat = res.roast_meat + changes.roast_meat;
 
             res.last_timestamp = timestamp;
 
