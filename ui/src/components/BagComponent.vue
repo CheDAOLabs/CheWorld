@@ -76,8 +76,8 @@ export default {
 
 <template>
 
-  <div class="sideList" v-loading="loading">
-    <div class="list">
+  <div class="sideList">
+    <div class="list"  v-loading="loading">
       <ul>
         <li style="">
           <div class="border">
