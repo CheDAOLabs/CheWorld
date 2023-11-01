@@ -57,7 +57,7 @@
               <ul>
                 <li v-for="(pair,index) in selected.pairs" :key="index">
                   <img src="@/assets/images/set1.png" alt="">
-                  <div class="num">{{ pair.value }}</div>
+                  <div class="num">0/{{ pair.value }}</div>
                   <div class="slide" style="display: block">
                     <div class="if1">
                       <div class="icn"><img src="@/assets/images/set1.png" alt=""></div>
@@ -477,10 +477,11 @@ export default {
   position: absolute;
   color: white;
   text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
-  right: 10px;
   bottom: 10px;
   z-index: 44;
   font-size: 14px;
+  right:30px;
+  text-align: right;
 }
 
 .pair ul li:hover .slide {
