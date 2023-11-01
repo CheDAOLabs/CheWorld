@@ -339,27 +339,27 @@ export default function transform({ header, events }: Block) {
         const { value } = parseResUpdate(event.data, 0);
         console.log("RES_UPDATE", "->", "ADVENTURER UPDATES");
         return [
-          updateAdventurerRes({
-            adventurerRes : value.adventurer_res
-          }),
+          // updateAdventurerRes({
+          //   adventurerRes : value.adventurer_res
+          // }),
         ];
         break;
       case COMPOSITED:
         const { value } = parseComposited(event.data, 0);
         console.log("COMPOSITED", "->", "ADVENTURER UPDATES");
         return [
-          updateAdventurerRes({
-            adventurerRes : value.res
-          }),
+          // updateAdventurerRes({
+          //   adventurerRes : value.res
+          // }),
         ];
         break;
       case EAT:
         const { value } = parseEat(event.data, 0);
         console.log("EAT", "->", "ADVENTURER UPDATES");
         return [
-          updateAdventurerRes({
-            adventurerRes : value.adventurer_res
-          }),
+          // updateAdventurerRes({
+          //   adventurerRes : value.adventurer_res
+          // }),
         ];
         break;
       default: {

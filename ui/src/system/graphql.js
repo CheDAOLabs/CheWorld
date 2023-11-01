@@ -62,3 +62,42 @@ export const getAdventure = async (owner) => {
     console.log('resp', resp)
     return resp.data;
 }
+
+export const getItemsByAdventureId = async (adventureId) => {
+    let query = 'query MyQuery {\n' +
+        '  items(where: {adventurerId: {eq: 1}}) {\n' +
+        '    timestamp\n' +
+        '    special3\n' +
+        '    special2\n' +
+        '    special1\n' +
+        '    xp\n' +
+        '    purchasedTime\n' +
+        '    ownerAddress\n' +
+        '    owner\n' +
+        '    item\n' +
+        '    isAvailable\n' +
+        '    equipped\n' +
+        '    adventurerId\n' +
+        '  }\n' +
+        '}';
+
+    let data = JSON.stringify({
+        "query": query,
+        "operationName": "MyQuery"
+    });
+
+    let config = {
+        method: 'post',
+        maxBodyLength: Infinity,
+        url: url,
+        headers: {
+            'content-type': 'application/json'
+        },
+        data: data
+    };
+
+
+    const resp = await axios.request(config);
+    console.log('resp', resp)
+    return resp.data;
+}
