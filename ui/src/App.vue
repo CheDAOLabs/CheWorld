@@ -16,7 +16,7 @@
 <!--    <WorldPage v-if="adventurer" :class="[currPage==='world'?'slide slide-in':'slide slide-out']"/>-->
     <WorldPage v-if="currPage==='world'" />
 
-    <audio ref="audioPlayer" src="music/ui/game_over.mp3" autoplay loop></audio>
+    <audio ref="audioPlayer" src="music/ui/bgm.mp3" autoplay loop volume="0.5"></audio>
   </div>
 
 

@@ -141,6 +141,8 @@ export function formatAdventurerState(adventurer, adventurerState) {
 
 export const playClickSound = () => {
     var sound = new Audio('music/ui/21 - Track 21.mp3'); // 替换为您的音效文件路径
+    // var sound = new Audio('music/ui/click.mp3'); // 替换为您的音效文件路径
+
     sound.play();
     // function playSound() {
     //     sound.play();
