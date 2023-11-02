@@ -50,7 +50,7 @@ export default {
       const paginatedRes = res.slice(startIndex, endIndex);
 
       let empty = [];
-      for (let i = res.length; i < limit; i++) {
+      for (let i = paginatedRes.length; i < limit; i++) {
         empty.push(i)
       }
 
@@ -115,7 +115,7 @@ export default {
           </div>
         </div>
       </li>
-      <!--      <li v-for="i in getRenderData().empty " :key="i"></li>-->
+            <li v-for="i in getRenderData().empty " :key="i"></li>
     </ul>
   </div>
 </template>
