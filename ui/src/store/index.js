@@ -842,9 +842,13 @@ export const store = createStore({
             console.log("loadResources res", res);
             context.commit('setAdventureRes', res)
 
-            const beastSpecs = convertBigIntToNumber(await contract.get_attacking_beast(context.state.adventurer.id));
-            console.log("beastSpecs", beastSpecs);
-            context.commit("setAdventurerBeastSpecs", beastSpecs);
+            try {
+                const beastSpecs = convertBigIntToNumber(await contract.get_attacking_beast(context.state.adventurer.id));
+                console.log("beastSpecs", beastSpecs);
+                context.commit("setAdventurerBeastSpecs", beastSpecs);
+            }catch (e) {
+                console.log(e)
+            }
 
             const bag = convertBigIntToNumber(await contract.get_bag(context.state.adventurer.id));
             console.log('bag', bag)
