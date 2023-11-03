@@ -22,7 +22,7 @@ export default {
       let page = this.page;
       let limit = this.limit;
       let temp = {
-        icon: "@/assets/images/set1.png",
+        icon: "",
         num: 0,
         name: "wild berries",
         desc: "Wild berries are precious forest resources, providing both nourishment and healing.",
@@ -37,6 +37,7 @@ export default {
         let item = JSON.parse(JSON.stringify(temp));
         if (num > 0 && key !== "last_timestamp") {
           item.name = getResConfigByKey(key).name;
+          item.icon = getResConfigByKey(key).icon;
           item.num = num;
           item.desc = getResConfigByKey(key).inform;
           item.type = ResType[getResConfigByKey(key).type];
@@ -93,7 +94,7 @@ export default {
     </div>
     <ul>
       <li v-for="item in getRenderData().res " :key="item" @click="onClick">
-        <img src="@/assets/images/set1.png" alt="">
+        <img :src="item.icon" alt="">
         <div class="num">{{ item.num }}</div>
         <div class="slide">
           <div class="if1">
