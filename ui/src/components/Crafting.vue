@@ -56,8 +56,8 @@
             <div class="list pair">
               <ul>
                 <li v-for="(pair,index) in selected.pairs" :key="index">
-                  <img :src="getResConfigById(pair.key).icon" alt="">
-                  <div class="num">{{getNumByRes(pair.key)}}/{{ pair.value }}</div>
+                  <img :src="getIconByNeed(pair.key,pair.value)" alt="">
+                  <div class="num">{{ getNumByRes(pair.key) }}/{{ pair.value }}</div>
                   <div class="slide" style="display: block">
                     <div class="if1">
                       <div class="icn"><img src="@/assets/images/set1.png" alt=""></div>
@@ -321,7 +321,7 @@ export default {
       }
 
     },
-    getResConfigById(id){
+    getResConfigById(id) {
       return getResConfigById(id);
     },
     closeCrafting() {
@@ -363,13 +363,25 @@ export default {
         addedItems,
       };
     },
+    getGeryIcon(icon) {
+      return icon.replace('_n.png', '_u.png')
+    },
+    getIconByNeed(id, need) {
+      let icon = getResConfigById(id).icon;
+      let now = this.getNumByRes(id);
+      if (need > now) {
+        return this.getGeryIcon(icon);
+      } else {
+        return icon;
+      }
+    },
     async doCrafting() {
       playClickSound();
       // console.log(id, name, pairs)
       if (this.loading === true) {
         return;
       }
-      this.addedItems=[];
+      this.addedItems = [];
       try {
         this.loading = true;
         let events = await this.composite({config_id: this.selected.id, times: this.craftingNumber});
@@ -377,9 +389,9 @@ export default {
         let bag = event.data.data.adventurerStateWithBag.bag;
         let reward = event.data.data.reward;
         let times = event.data.data.times;
-        console.log(bag);
+        console.log('new bag', bag);
         let diff = this.diffBags(this.adventurer.bag, bag);
-        console.log(diff);
+        console.log('diff', diff);
         if (diff.length > 0) {
           this.showInformation = true;
         }
@@ -454,9 +466,9 @@ export default {
       this.selected = null;
       this.complate = null;
     },
-    getNumByRes(id){
+    getNumByRes(id) {
       let key = id2key(id);
-      console.log(id,key)
+      console.log(id, key)
 
       return this.adventurer.resources[key];
     }
@@ -489,7 +501,7 @@ export default {
   bottom: 10px;
   z-index: 44;
   font-size: 14px;
-  right:30px;
+  right: 30px;
   text-align: right;
 }
 
