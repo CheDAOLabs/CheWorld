@@ -56,7 +56,7 @@
             <div class="list pair">
               <ul>
                 <li v-for="(pair,index) in selected.pairs" :key="index">
-                  <img src="@/assets/images/set1.png" alt="">
+                  <img :src="getResConfigById(pair.key).icon" alt="">
                   <div class="num">{{getNumByRes(pair.key)}}/{{ pair.value }}</div>
                   <div class="slide" style="display: block">
                     <div class="if1">
@@ -321,6 +321,9 @@ export default {
       }
 
     },
+    getResConfigById(id){
+      return getResConfigById(id);
+    },
     closeCrafting() {
       playClickSound();
       this.setShowCrafting(false);
@@ -403,7 +406,7 @@ export default {
             'id': 0,
             'name': 'Roast Meat',
             'tiers': 0,
-            'icon': '/images/set1.png',
+            'icon': '/images/item/item_21_n.png',
           })
         }
 
