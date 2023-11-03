@@ -87,7 +87,7 @@ export default {
       <ul>
         <li style="">
           <div class="border">
-            <div class="imgbox"><img src="@/assets/images/set1.png" alt=""></div>
+            <div class="imgbox"><img src="/images/item/item_21_n.png" alt=""></div>
             <div class="ri">
               <div class="title">Roast meat</div>
               <div class="dec">Type: Meat</div>
