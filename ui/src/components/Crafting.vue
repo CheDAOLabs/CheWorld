@@ -58,9 +58,9 @@
                 <li v-for="(pair,index) in selected.pairs" :key="index">
                   <img :src="getIconByNeed(pair.key,pair.value)" alt="">
                   <div class="num">{{ getNumByRes(pair.key) }}/{{ pair.value }}</div>
-                  <div class="slide" style="display: block">
+                  <div class="slide" style="display: block;z-index: 100">
                     <div class="if1">
-                      <div class="icn"><img src="@/assets/images/set1.png" alt=""></div>
+                      <div class="icn"><img :src="getIconByNeed(pair.key,pair.value)" alt=""></div>
                       <div class="ri">
                         <p>
                           <b>Item: </b>{{ pair.name }}

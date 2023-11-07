@@ -98,7 +98,7 @@ export default {
         <div class="num">{{ item.num }}</div>
         <div class="slide">
           <div class="if1">
-            <div class="icn"><img src="@/assets/images/set1.png" alt=""></div>
+            <div class="icn"><img :src="item.icon" alt=""></div>
             <div class="ri">
               <p>
                 <b>Item: </b>{{ item.name }}
