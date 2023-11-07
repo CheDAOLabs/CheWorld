@@ -27,9 +27,9 @@
     </el-dialog>
 
 
-    <div class="people people1 idle-animation" @click="onClickSelf">
-      <img src="@/assets/images/people.png" alt="">
-    </div>
+<!--    <div class="people people1 idle-animation" @click="onClickSelf">-->
+<!--      <img src="@/assets/images/people.png" alt="">-->
+<!--    </div>-->
 
     <div class="people people2 idle-animation" @click="showDialog">
       <div class="infor">

@@ -99,7 +99,7 @@ export default {
   }
   50% {
     box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
-    transform: translatey(-20px);
+    transform: translatey(-1px);
   }
   100% {
     box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
@@ -109,7 +109,7 @@ export default {
 
 .idle-animation {
   transform: translatey(0px);
-  animation: float 6s ease-in-out infinite;
+  animation: float 2s ease-in-out infinite;
   box-shadow: none !important;
 }
 .idle-animation img{
