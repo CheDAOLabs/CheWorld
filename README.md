@@ -38,16 +38,21 @@ The worldview is consistent with the project components described above.
 **Background:** Each adventurer is magically transported to the Talas continent. They carry different CheCells, and they can return to their original world only after completely conquering all the dungeons on the Talas continent.
 
 **Character Creation:** Players need to answer some questions to determine character attributes, which will impact the subsequent combat process.
+![Character](https://github.com/CheDAOLabs/CheWorld/blob/main/images/character_creation.png?raw=true)
+
 
 ****About the Tribe****
 
 The tribe is a place for players to socialize and rest. You can chat, trade, and forge items in the tribe. The current maximum number of people in a single tribe is 100. People from the same tribe do not need to spend money to share resources. Users from different tribes need to use transportation to transport resources.
 
 **Forge Items:** Players can forge items by consuming materials. Different types of items require the consumption of various resources. You can increase your combat power by forging equipment and create food to restore your health or stamina.
+![Tribe](https://github.com/CheDAOLabs/CheWorld/blob/main/images/tribe.png?raw=true)
 
 ****About Resources****
 
 Resources are divided into three types: animals, plants, and minerals. Some resources will recover over a fixed period of time, and some rare resources will be provided in limited quantities. We hope that players can use resources reasonably.
+
+![Resources](https://github.com/CheDAOLabs/CheWorld/blob/main/images/resource.png?raw=true)
 
 ## **Challenge the Dungeon**
 
