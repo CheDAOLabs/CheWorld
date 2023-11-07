@@ -145,7 +145,7 @@ export default {
   width: 52px;
   height: 52px;
   position: absolute;
-  right: -13px;
+  right: -1px;
   top: -1px;
   background: url('@/assets/images/close.png') no-repeat center center;
   background-size: 100%;
